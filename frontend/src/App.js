@@ -4,6 +4,7 @@ import MainLayout from './layouts/MainLayout';
 import SearchLayout from './layouts/SearchLayout';
 import PlayListLayout from './layouts/PlayListLayout';
 import WeatherSearch from './pages/search/WeatherSearch';
+import EmailLogin from 'pages/main/EmailLogin';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         {/* 메인 및 이메일 확인 */}
         <Route path="/" element={ <MainLayout/> }>
           <Route index element={ <Main/> } />
+          <Route path="email" element={ <EmailLogin/> } />
         </Route>
 
         {/* 플레이리스트 생성 */}
