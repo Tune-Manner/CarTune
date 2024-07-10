@@ -4,7 +4,10 @@ from pydantic import BaseModel
 import requests
 from typing import List
 from cryptography.fernet import Fernet
-from backend.credentials.credentials import Encrypted_text, Encrypted_text1
+import sys, os
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
+from credentials.credentials import Encrypted_text, Encrypted_text1
 
 app = FastAPI()
 
@@ -15,7 +18,7 @@ with open("encryption_key.key", "rb") as key_file:
 
 cipher_suite =Fernet(key)
 
-CLIENT_SECRET = cipher_suite.decrypt(Encrypted_text).decode()
+CLIENT_SECRET = cipher_suite.decrypt(Encrypted_text).decode(  )
 
 with open("encryption_key1.key", "rb") as key_file:
     key = key_file.read()
