@@ -2,7 +2,7 @@ import { Navbar, Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function SearchHeader() {
+function PlayListHeader() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -12,11 +12,11 @@ function SearchHeader() {
 
     return(
         <>
-            <Navbar className="bg-body-tertiary border-2 border-bottom">
+            <Navbar className="">
                 <Container>
                     <Navbar.Brand href="">
                         <img
-                        src="/cartune-logo.png"
+                        src="/cartune-logo-white.png"
                         width="70"
                         height="70"
                         className="d-inline-block align-top"
@@ -30,4 +30,4 @@ function SearchHeader() {
     );
 }
 
-export default SearchHeader;
+export default PlayListHeader;
