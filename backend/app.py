@@ -4,17 +4,25 @@ from pydantic import BaseModel
 import requests
 from typing import List
 from cryptography.fernet import Fernet
-from credentials import Encrypted_text
+from credentials import Encrypted_text, Encrypted_text1
 
 app = FastAPI()
 
 CLIENT_ID = "ac56d5b5d54b42f18ebdae8323547f75"
+
 with open("encryption_key.key", "rb") as key_file:
     key = key_file.read()
 
 cipher_suite =Fernet(key)
 
 CLIENT_SECRET = cipher_suite.decrypt(Encrypted_text).decode()
+
+with open("encryption_key1.key", "rb") as key_file:
+    key = key_file.read()
+
+cipher_suite = Fernet(key)
+
+REFRESH_TOKEN = cipher_suite.decrypt(Encrypted_text1).decode()
 
 # CORS 설정 추가
 origins = [
@@ -38,12 +46,11 @@ class Song(BaseModel):
 class PlaylistRequest(BaseModel):
     songs: List[Song]
     playlist_name: str
-    refresh_token: str
 
-def refresh_access_token(refresh_token: str):
+def refresh_access_token(REFRESH_TOKEN):
     refresh_response = requests.post("https://accounts.spotify.com/api/token", data={
         'grant_type': 'refresh_token',
-        'refresh_token': refresh_token,
+        'refresh_token': REFRESH_TOKEN,
         'client_id': CLIENT_ID,
         'client_secret': CLIENT_SECRET,
     })
@@ -124,7 +131,7 @@ def play_playlist(headers, playlist_id):
 def create_and_play_playlist(request: PlaylistRequest):
     try:
         # 1. 액세스 토큰 갱신
-        access_token = refresh_access_token(request.refresh_token)
+        access_token = refresh_access_token(REFRESH_TOKEN)
         headers = get_spotify_headers(access_token)
 
         # 2. 사용자 ID 가져오기
@@ -147,10 +154,10 @@ def create_and_play_playlist(request: PlaylistRequest):
         latest_playlist_info = {
             "playlist_id": playlist_id,
             "track_uris": track_uris,
-            "refresh_token": request.refresh_token
+            "refresh_token": REFRESH_TOKEN
         }
 
-        return {"playlist_id": playlist_id, "track_uris": track_uris, "refresh_token": request.refresh_token}
+        return {"playlist_id": playlist_id, "track_uris": track_uris, "refresh_token": REFRESH_TOKEN}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
