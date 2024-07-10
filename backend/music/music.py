@@ -4,7 +4,7 @@ from pydantic import BaseModel
 import requests
 from typing import List
 from cryptography.fernet import Fernet
-from credentials import Encrypted_text, Encrypted_text1
+from backend.credentials.credentials import Encrypted_text, Encrypted_text1
 
 app = FastAPI()
 
