@@ -9,10 +9,8 @@ def listen_and_transcribe():
         # 마이크 설정
         with sr.Microphone() as source:
             print("말씀하세요...")
-            recognizer.adjust_for_ambient_noise(source)
             # 사용자의 말을 듣고 오디오 데이터로 저장, 최대 30초 동안 녹음
-            audio = recognizer.listen(source,3,10)
-
+            audio = recognizer.listen(source, 5, 60)
 
         # Google의 음성 인식을 사용하여 한국어 인식
         text = recognizer.recognize_google(audio, language='ko-KR')
