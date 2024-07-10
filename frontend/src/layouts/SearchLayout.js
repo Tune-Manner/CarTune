@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import SearchHeader from "../components/common/SearchHeader";
+import SearchHeader from "../custom-components/common/SearchHeader";
 import { Container } from "react-bootstrap";
 
 function SearchLayout() {

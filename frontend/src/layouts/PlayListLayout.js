@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import PlayListHeader from "../components/common/PlayListHeader";
+import PlayListHeader from "../custom-components/common/PlayListHeader";
 import { Outlet } from "react-router-dom";
 
 function PlayListLayout() {
