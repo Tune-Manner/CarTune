@@ -1,10 +1,7 @@
 import { Button } from "components/ui/button";
 import { Input } from "components/ui/input";
-import { useNavigate } from "react-router-dom";
  
 function EmailInput() {
-
-  const navigate = useNavigate();
 
   return (
     <>
@@ -21,12 +18,6 @@ function EmailInput() {
         >
           확인
         </Button>
-      </div>
-      <div
-        className="text-start mt-3 w-[380px]"
-        onClick={() => navigate(-1)}
-      >
-        〈&nbsp;메인으로
       </div>
     </>
   )
