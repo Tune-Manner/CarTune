@@ -7,6 +7,7 @@ import SearchBtn from "custom-components/btn/SearchBtn";
   import { TiWeatherCloudy, TiWeatherShower, TiWeatherSunny, TiWeatherSnow, TiWeatherWindyCloudy } from "react-icons/ti";
   
   function WeatherCard({ weatherName, noValue }) {
+    
     let weatherIcon;
     let weatherKrName;
   
@@ -53,7 +54,7 @@ import SearchBtn from "custom-components/btn/SearchBtn";
     } else {
       return (
         // 값을 수동으로 넣는 카드의 경우
-        <Card className="w-[220px] h-[280px] mx-3" style={{ borderRadius: '10px' }}>
+        <Card className="w-[200px] h-[280px] mx-1" style={{ borderRadius: '10px' }}>
           <CardContent className="grid w-full mt-0 h-[180px] text-center justify-center pb-0">
             {weatherIcon}
           </CardContent>
