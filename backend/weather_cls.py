@@ -1,11 +1,13 @@
 from fastapi import FastAPI, File, UploadFile
 from tensorflow.python.keras.models import load_model
-from keras._tf_keras.keras.preprocessing.image import smart_resize, load_img, img_to_array
-# from tensorflow.python.keras.layers import VersionAwareLayers
+from tensorflow import keras
 from keras._tf_keras.keras.layers import BatchNormalization
+from keras._tf_keras.keras.preprocessing.image import smart_resize, load_img, img_to_array
+# from tensorflow.keras.layers import BatchNormalization
 from PIL import Image
 import numpy as np
 import io
+import pprint
 
 app = FastAPI()
 
@@ -28,6 +30,7 @@ def preprocess_image(image: Image.Image) -> np.ndarray:
 # 예측 함수
 def predict_image(image: np.ndarray) -> int:
     predictions = model.predict(image)
+    pprint.pprint(predictions)
     predicted_class = np.argmax(predictions, axis=1)[0]
     return predicted_class
 
@@ -39,7 +42,7 @@ def predict_image(image: np.ndarray) -> int:
 #     return 'Predicted Class for the input image : {}'.format(actualClasses[classes])
 
 
-@app.post("/predict/")
+@app.post("/weather-predict/")
 async def predict(file: UploadFile = File(...)):
     # 이미지 읽기 및 전처리
     image_bytes = await file.read()
