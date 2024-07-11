@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 function MainLayout() {
     return(
         <>
-            <main className="main">
+            <main className="main" style={{"backgroundColor": "black"}}>
                 <Outlet/>
             </main>
         </>

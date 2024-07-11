@@ -2,21 +2,20 @@ import { Navbar, Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function PlayListHeader() {
+function SearchHeader() {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     // 로고 클릭 시 메인 페이지로 이동
     const onClickHandler = () => navigate("/");
 
     return(
         <>
-            <Navbar className="">
+            <Navbar className="bg-body-tertiary border-2 border-bottom">
                 <Container>
                     <Navbar.Brand href="">
                         <img
-                        src="/cartune-logo-white.png"
+                        src="/cartune-logo.png"
                         width="70"
                         height="70"
                         className="d-inline-block align-top"
@@ -30,4 +29,4 @@ function PlayListHeader() {
     );
 }
 
-export default PlayListHeader;
+export default SearchHeader;

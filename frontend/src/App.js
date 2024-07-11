@@ -4,6 +4,10 @@ import MainLayout from './layouts/MainLayout';
 import SearchLayout from './layouts/SearchLayout';
 import PlayListLayout from './layouts/PlayListLayout';
 import WeatherSearch from './pages/search/WeatherSearch';
+import EmailLogin from 'pages/main/EmailLogin';
+import WeatherSearchResult from 'pages/search/WeatherSearchResult';
+import Playlist from 'pages/music/Playlist';
+import SendEmail from 'pages/music/SendEmail';
 
 function App() {
   return (
@@ -12,17 +16,23 @@ function App() {
         {/* 메인 및 이메일 확인 */}
         <Route path="/" element={ <MainLayout/> }>
           <Route index element={ <Main/> } />
+          <Route path="email" element={ <EmailLogin/> } />
         </Route>
 
         {/* 플레이리스트 생성 */}
         <Route path="/search" element={ <SearchLayout/> }>
           <Route index element={<Navigate to="/search/weather" replace/>}/>
           <Route path="weather" element={ <WeatherSearch/> }/>
+          {/* 아래 방식으로 값에 따른 결과 출력 */}
+          {/* <Route path="weather/:weatherResult" element={ <WeatherSearchResult/> }/> */}
+          {/* 아래는 api연결 후 삭제 */}
+          <Route path="weather/test" element={ <WeatherSearchResult/> }/>
         </Route>
 
         {/* 플레이리스트 조회 및 제어 */}
         <Route path="/playlist" element={ <PlayListLayout/> }>
-          
+          <Route index element={ <Playlist/> }/>
+          <Route path="send-email" element={ <SendEmail/> }/>
         </Route>
 
 
