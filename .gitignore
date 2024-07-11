@@ -4,9 +4,7 @@
 ### Python ###
 # Byte-compiled / optimized / DLL files
 backend/__pycache__/
-backend/credentials/encryption_key.key
-backend/credentials/encryption_key1.key
-backend/credentials/credentials.py
+backend/credentials/
 *.py[cod]
 *$py.class
 
