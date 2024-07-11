@@ -1,11 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SearchBtn from "custom-components/btn/SearchBtn";
 import WeatherCard from "custom-components/card/WeatherCard";
 import { Container, Row } from "react-bootstrap";
 
 function WeatherSearch() {
-
     const fileInputRef = useRef(null);
+    const navigate = useNavigate();
+    const [image, setImage] = useState(null);
 
     const handleButtonClick = () => {
         fileInputRef.current.click();
@@ -14,8 +16,12 @@ function WeatherSearch() {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            // 파일 처리 로직 추가
-            console.log(file.name);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result);
+                navigate('/search/weather/result', { state: { image: reader.result } });
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -48,3 +54,4 @@ function WeatherSearch() {
 }
 
 export default WeatherSearch;
+
