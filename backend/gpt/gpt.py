@@ -12,7 +12,7 @@ cipher_suite = Fernet(key)
 
 openai.api_key = cipher_suite.decrypt(Encrypted_text2).decode()
 
-def gptPrompt(weather: str):
+def gptPrompt(weather):
     try:
         prompt = "{} 날씨에 맞는 음악 10개를 추천해줘. 반드시 영어로 아래 양식에 맞게 작성해줘.\n\
         {{\
