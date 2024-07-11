@@ -1,25 +1,48 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SearchBtn from "custom-components/btn/SearchBtn";
 import WeatherCard from "custom-components/card/WeatherCard";
 import { Container, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { callWeatherPredictAPI } from "../../apis/weatherAPICalls";
+
+const weatherMapping = {
+    1: "Rainy",
+    2: "Cloudy",
+    3: "Sunny",
+    4: "Snowy",
+    5: "Foggy"
+};
 
 function WeatherSearch() {
-
     const fileInputRef = useRef(null);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [image, setImage] = useState(null);
+
+    const { weather } = useSelector(state => state.weatherReducer);
 
     const handleButtonClick = () => {
         fileInputRef.current.click();
     };
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         const file = e.target.files[0];
         if (file) {
-            // 파일 처리 로직 추가
-            console.log(file.name);
+            // API 호출 액션 디스패치
+            await dispatch(callWeatherPredictAPI(file));
+
+            // weather 객체 확인 후 navigate
+            if (weather && weather.predicted_class) {
+                console.log("예측 된 날씨", weather.predicted_class);
+                navigate('/search/weather/result', { state: { image: URL.createObjectURL(file), predictedClass: weather.predicted_class } });
+            } else {
+                console.error("예측된 날씨를 가져올 수 없습니다.");
+            }
         }
     };
 
-    return(
+    return (
         <>
             <Container className="d-flex align-items-center justify-content-center flex-column p-5">
                 <h1>풍경을 업로드해주세요.</h1>
@@ -36,7 +59,6 @@ function WeatherSearch() {
                 />
             </Container>
             <Row className="px-3 justify-content-center">
-                {/* 값을 넘길 때는 noValue를 따로 쓰지 않는다. */}
                 <WeatherCard weatherName={"Cloudy"} noValue={true} />
                 <WeatherCard weatherName={"Rainy"} noValue={true} />
                 <WeatherCard weatherName={"Sunny"} noValue={true} />

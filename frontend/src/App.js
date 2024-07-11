@@ -11,33 +11,29 @@ import SendEmail from 'pages/music/SendEmail';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* 메인 및 이메일 확인 */}
-        <Route path="/" element={ <MainLayout/> }>
-          <Route index element={ <Main/> } />
-          <Route path="email" element={ <EmailLogin/> } />
-        </Route>
+      <BrowserRouter>
+        <Routes>
+          {/* 메인 및 이메일 확인 */}
+          <Route path="/" element={ <MainLayout/> }>
+            <Route index element={ <Main/> } />
+            <Route path="email" element={ <EmailLogin/> } />
+          </Route>
 
-        {/* 플레이리스트 생성 */}
-        <Route path="/search" element={ <SearchLayout/> }>
-          <Route index element={<Navigate to="/search/weather" replace/>}/>
-          <Route path="weather" element={ <WeatherSearch/> }/>
-          {/* 아래 방식으로 값에 따른 결과 출력 */}
-          {/* <Route path="weather/:weatherResult" element={ <WeatherSearchResult/> }/> */}
-          {/* 아래는 api연결 후 삭제 */}
-          <Route path="weather/test" element={ <WeatherSearchResult/> }/>
-        </Route>
+          {/* 플레이리스트 생성 */}
+          <Route path="/search" element={ <SearchLayout/> }>
+            <Route index element={<Navigate to="/search/weather" replace/>}/>
+            <Route path="weather" element={ <WeatherSearch/> }/>
+            {/* 아래 방식으로 값에 따른 결과 출력 */}
+            <Route path="weather/result" element={ <WeatherSearchResult/> }/>
+          </Route>
 
-        {/* 플레이리스트 조회 및 제어 */}
-        <Route path="/playlist" element={ <PlayListLayout/> }>
-          <Route index element={ <Playlist/> }/>
-          <Route path="send-email" element={ <SendEmail/> }/>
-        </Route>
-
-
-      </Routes>
-    </BrowserRouter>
+          {/* 플레이리스트 조회 및 제어 */}
+          <Route path="/playlist" element={ <PlayListLayout/> }>
+            <Route index element={ <Playlist/> }/>
+            <Route path="send-email" element={ <SendEmail/> }/>
+          </Route>
+        </Routes>
+      </BrowserRouter>
   );
 }
 
