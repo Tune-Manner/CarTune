@@ -3,9 +3,19 @@ import { useLocation } from 'react-router-dom';
 import WeatherCard from "custom-components/card/WeatherCard";
 import { Col, Row } from "react-bootstrap";
 
+const weatherMapping = {
+    1: "Rainy",
+    2: "Cloudy",
+    3: "Sunny",
+    4: "Snowy",
+    5: "Foggy"
+};
+
 function WeatherSearchResult() {
     const location = useLocation();
-    const { image } = location.state || {};
+    const { image,predictedClass } = location.state || {};
+
+    const weatherName = weatherMapping[predictedClass]||"Unknown";
 
     return(
         <>
@@ -16,7 +26,7 @@ function WeatherSearchResult() {
                     </div>
                 </Col>
                 <Col className="col-4 mt-5">
-                    <WeatherCard weatherName={"Foggy"}/>
+                    <WeatherCard weatherName={weatherName}/>
                 </Col>
             </Row>
         </>

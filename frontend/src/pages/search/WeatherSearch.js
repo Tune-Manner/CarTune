@@ -6,6 +6,15 @@ import { Container, Row } from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {callWeatherPredictAPI} from "../../apis/weatherAPICalls";
 
+const weatherMapping = {
+    1: "Rainy",
+    2: "Cloudy",
+    3: "Sunny",
+    4: "Snowy",
+    5: "Foggy"
+};
+
+
 function WeatherSearch() {
     const fileInputRef = useRef(null);
     const navigate = useNavigate();
@@ -22,11 +31,12 @@ function WeatherSearch() {
         const file = e.target.files[0];
         if (file) {
             // API 호출 액션 디스패치
-            dispatch(callWeatherPredictAPI(file));
+            await dispatch(callWeatherPredictAPI(file));
 
             console.log("예측 된 날씨",weather.predicted_class)
-            // navigate를 포함하여 추가 작업 수행
-            navigate('/search/weather/result', { state: { image: URL.createObjectURL(file) } });
+
+            // 예측된 날씨 값으로 navigate
+            navigate('/search/weather/result', { state: { image: URL.createObjectURL(file), predictedClass: weather.predicted_class } });
         }
     };
 
