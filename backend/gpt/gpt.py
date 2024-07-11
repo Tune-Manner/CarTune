@@ -4,6 +4,7 @@ import os
 from cryptography.fernet import Fernet
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from credentials.credentials import Encrypted_text2
+import json
 
 with open("../credentials/encryption_key2.key", "rb") as key_file:
     key = key_file.read()
@@ -43,7 +44,9 @@ def gptPrompt(weather):
         print("OpenAI API Error!")
         print(f"에러 내용: \n{e}")
         return
-    return response.choices[0].message.content
+    return json.loads(response.choices[0].message.content)
 
 weather = "sunny"
-print(gptPrompt(weather))
+result = gptPrompt(weather)
+print(result)
+print(f"type of result is: {result}")
