@@ -13,14 +13,14 @@ app = FastAPI()
 
 CLIENT_ID = "ac56d5b5d54b42f18ebdae8323547f75"
 
-with open("encryption_key.key", "rb") as key_file:
+with open("../credentials/encryption_key.key", "rb") as key_file:
     key = key_file.read()
 
 cipher_suite =Fernet(key)
 
 CLIENT_SECRET = cipher_suite.decrypt(Encrypted_text).decode(  )
 
-with open("encryption_key1.key", "rb") as key_file:
+with open("../credentials/encryption_key1.key", "rb") as key_file:
     key = key_file.read()
 
 cipher_suite = Fernet(key)
