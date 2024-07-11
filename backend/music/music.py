@@ -6,6 +6,7 @@ from typing import List
 from cryptography.fernet import Fernet
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+from gpt.gpt import gptPrompt, weather
 
 from credentials.credentials import Encrypted_text, Encrypted_text1
 
@@ -46,9 +47,11 @@ class Song(BaseModel):
     title: str
     artist: str
 
-class PlaylistRequest(BaseModel):
-    songs: List[Song]
-    playlist_name: str
+# class PlaylistRequest(BaseModel):
+#     songs = gptPrompt(weather)['songs']
+#     playlist_name = gptPrompt(weather)['playlist_name']
+#     songs: List[Song]
+#     playlist_name: str
 
 def refresh_access_token(REFRESH_TOKEN):
     refresh_response = requests.post("https://accounts.spotify.com/api/token", data={
@@ -87,15 +90,15 @@ def create_playlist(headers, user_id, playlist_name):
 def search_tracks(headers, songs):
     track_uris = []
     for song in songs:
-        search_url = f"https://api.spotify.com/v1/search?q=track:{song.title}%20artist:{song.artist}&type=track"
+        search_url = f"https://api.spotify.com/v1/search?q=track:{song['title']}%20artist:{song['artist']}&type=track"
         search_response = requests.get(search_url, headers=headers)
         if search_response.status_code != 200:
-            raise HTTPException(status_code=search_response.status_code, detail=f"Error searching for track {song.title} by {song.artist}")
+            raise HTTPException(status_code=search_response.status_code, detail=f"Error searching for track {song['title']} by {song['artist']}")
         search_result = search_response.json()
         if search_result['tracks']['items']:
             track_uris.append(search_result['tracks']['items'][0]['uri'])
         else:
-            raise HTTPException(status_code=404, detail=f"Track {song.title} by {song.artist} not found")
+            raise HTTPException(status_code=404, detail=f"Track {song['title']} by {song['artist']} not found")
     return track_uris
 
 def add_tracks_to_playlist(headers, playlist_id, track_uris):
@@ -131,7 +134,7 @@ def play_playlist(headers, playlist_id):
         raise HTTPException(status_code=play_response.status_code, detail=play_response.json().get('error', {}).get('message', 'Error playing playlist'))
 
 @app.post("/create_and_play_playlist")
-def create_and_play_playlist(request: PlaylistRequest):
+def create_and_play_playlist():
     try:
         # 1. 액세스 토큰 갱신
         access_token = refresh_access_token(REFRESH_TOKEN)
@@ -141,10 +144,10 @@ def create_and_play_playlist(request: PlaylistRequest):
         user_id = get_user_id(headers)
 
         # 3. 플레이리스트 생성
-        playlist_id = create_playlist(headers, user_id, request.playlist_name)
+        playlist_id = create_playlist(headers, user_id, gptPrompt(weather)['playlist_name'])
 
         # 4. 트랙 검색 및 URI 수집
-        track_uris = search_tracks(headers, request.songs)
+        track_uris = search_tracks(headers, gptPrompt(weather)['songs'])
 
         # 5. 트랙을 플레이리스트에 추가
         add_tracks_to_playlist(headers, playlist_id, track_uris)

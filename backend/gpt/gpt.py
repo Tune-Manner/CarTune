@@ -25,7 +25,7 @@ def gptPrompt(weather):
         \t\t{{ \"title\": \"Cheer Up\", \"artist\": \"TWICE\" }},\
         \t\t{{ \"title\": \"LILAC\", \"artist\": \"IU\" }}\
         \t],\
-        \t\"playlist_name\": \"{} day playlist\"\
+        \t\"playlist_name\": \"{}_day_playlist\"\
         }}".format(weather, weather)
 
         response = openai.chat.completions.create(
@@ -48,5 +48,5 @@ def gptPrompt(weather):
 
 weather = "sunny"
 result = gptPrompt(weather)
-print(result)
-print(f"type of result is: {result}")
+# print(result)
+# print(f"type of result is: {result}")
