@@ -1,26 +1,28 @@
-import { request } from "./api"
+import { request } from "./api";
+import { getWeatherResult } from "../modules/WeatherModules";
 
-
-export function callWeatherPredictAPI() {
-
+export const callWeatherPredictAPI = (file) => {
     return async (dispatch, getState) => {
+        const formData = new FormData();
+        formData.append('file', file);
 
         // API 호출
-        const result = await request('POST', '/weather-predict')
-
-        if(result.status === 200) {
-            dispatch(weatherPredict(result));
+        const result = await request('POST', '/weather-predict/', formData);
+        if (result && result.status === 200) {
+            dispatch(getWeatherResult(result.data));
+        } else {
+            console.error('Unexpected response:', result);
         }
-    }
-}
+    };
+};
 
-export function callWeatherPredictResultAPI() {
-
-    return async (dispatch, getState) => {
-
-        // API 호출
-        const result = await request('GET', '/weather-predict')
-
-        dispatch(weatherPredictResult(result));
-    }
-}
+// export function callWeatherPredictResultAPI() {
+//
+//     return async (dispatch, getState) => {
+//
+//         // API 호출
+//         const result = await request('GET', '/weather-predict')
+//
+//         dispatch(weatherPredictResult(result));
+//     }
+// }

@@ -1,4 +1,4 @@
-import { handleActions } from "redux-actions";
+import { createActions, handleActions} from "redux-actions";
 
 // 초기 값
 const initialState = {};
@@ -7,7 +7,7 @@ const initialState = {};
 const SUCCESS = 'weather/SUCCESS';
 const GET_WEATHER_RESULT = 'weather/GET_WEATHER_RESULT';
 
-export const { weather : { getWeatherResult } } = creatActions({
+export const { weather : { success,getWeatherResult } } = createActions({
     [SUCCESS] : () => ({ success : true }),
     [GET_WEATHER_RESULT] : result => ({ weather : result })
 });

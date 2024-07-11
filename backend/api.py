@@ -6,6 +6,7 @@ from tensorflow import keras
 from keras._tf_keras.keras.layers import BatchNormalization
 from keras._tf_keras.keras.preprocessing.image import smart_resize, load_img, img_to_array
 from PIL import Image
+from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
 import io
 import pprint
@@ -13,6 +14,18 @@ import pprint
 # FastAPI 설정
 app = FastAPI()
 
+#CORS 설정
+origins = [
+    "http://localhost:3000"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # KoBART 모델과 토크나이저 로드
 kobart_model_name = 'hyunwoongko/kobart'
 kobart_model = BartForConditionalGeneration.from_pretrained(kobart_model_name)
