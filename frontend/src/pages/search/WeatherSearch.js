@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import SearchBtn from "custom-components/btn/SearchBtn";
 import WeatherCard from "custom-components/card/WeatherCard";
 import { Container, Row } from "react-bootstrap";
-import {useDispatch, useSelector} from "react-redux";
-import {callWeatherPredictAPI} from "../../apis/weatherAPICalls";
+import { useDispatch, useSelector } from "react-redux";
+import { callWeatherPredictAPI } from "../../apis/weatherAPICalls";
 
 const weatherMapping = {
     1: "Rainy",
@@ -13,7 +13,6 @@ const weatherMapping = {
     4: "Snowy",
     5: "Foggy"
 };
-
 
 function WeatherSearch() {
     const fileInputRef = useRef(null);
@@ -33,10 +32,13 @@ function WeatherSearch() {
             // API 호출 액션 디스패치
             await dispatch(callWeatherPredictAPI(file));
 
-            console.log("예측 된 날씨",weather.predicted_class)
-
-            // 예측된 날씨 값으로 navigate
-            navigate('/search/weather/result', { state: { image: URL.createObjectURL(file), predictedClass: weather.predicted_class } });
+            // weather 객체 확인 후 navigate
+            if (weather && weather.predicted_class) {
+                console.log("예측 된 날씨", weather.predicted_class);
+                navigate('/search/weather/result', { state: { image: URL.createObjectURL(file), predictedClass: weather.predicted_class } });
+            } else {
+                console.error("예측된 날씨를 가져올 수 없습니다.");
+            }
         }
     };
 
