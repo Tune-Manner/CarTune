@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
+import { faMicrophone, faRedo } from '@fortawesome/free-solid-svg-icons';
 import './WeatherOptions.css'; // CSS 파일을 import 합니다.
 
 function WeatherOptions() {
@@ -48,8 +48,12 @@ function WeatherOptions() {
                     className="email-input"
                     readOnly
                 />
-                <div className={`microphone-icon ${recording ? 'recording' : ''}`}>
-                    <FontAwesomeIcon icon={faMicrophone} />
+                <div className="icon-container" onClick={recording ? null : startRecording}>
+                    {recording ? (
+                        <FontAwesomeIcon icon={faMicrophone} className="microphone-icon" />
+                    ) : (
+                        <FontAwesomeIcon icon={faRedo} className="redo-icon" />
+                    )}
                 </div>
             </div>
             {error && (
