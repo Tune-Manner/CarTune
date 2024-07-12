@@ -17,7 +17,7 @@ function WeatherOptions() {
     useEffect(() => {
         if (transcript) {
             const timer = setTimeout(() => {
-                navigate('/playlist', { state: { entities } });
+                navigate('/playlist', { state: { entities,weatherName } });
             }, 3000);
 
             return () => clearTimeout(timer);
@@ -98,6 +98,7 @@ function WeatherOptions() {
                     </>
                 )}
             </div>
+            <h1 className={"des"}>세부 옵션을 설정하면더 적절한 리스트가 만들어져요.</h1>
             <div className="input-container">
                 <input
                     type="text"

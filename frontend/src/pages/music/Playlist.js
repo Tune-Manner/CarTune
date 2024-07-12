@@ -10,7 +10,7 @@ function Playlist() {
     const [playlistDetails, setPlaylistDetails] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
-    const { entities } = location.state || {};
+    const { entities,weatherName } = location.state || {};
 
     // 로고 클릭 시 메인 페이지로 이동
     const onClickHandler = () => navigate("/");
@@ -152,7 +152,6 @@ function Playlist() {
                                     <div className="track-duration">{Math.floor(item.track.duration_ms / 60000)}:{Math.floor((item.track.duration_ms % 60000) / 1000).toFixed(0).padStart(2, '0')}</div>
                                 </div>
                             ))}
-
                         </div>
                     )}
                 </Col>
