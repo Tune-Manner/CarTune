@@ -20,7 +20,7 @@ function Main() {
                 <Col className="d-flex align-items-center justify-content-center flex-column">
                     <Image src="/cartune-logo.png" fluid className="logo-image"/>
                     <h1 className="mb-3">CARTUNE</h1>
-                    <p className="mb-5 fs-5">음성과 현재 날씨에 어울리는<br/>드라이브 음악을 추천해 드릴게요.</p>
+                    <p className="mb-5 fs-5">현재 날씨에 어울리는<br/>드라이브 음악을 추천해 드릴게요.</p>
                     <Button
                         variant="light"
                         className="w-[190px] mb-3"
