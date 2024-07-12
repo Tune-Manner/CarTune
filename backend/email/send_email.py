@@ -18,7 +18,7 @@ def sendEmail(addr):
 db = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="gksthf2^^",  
+    password="qlqjs120",  
     database="cartune"
 )
 
