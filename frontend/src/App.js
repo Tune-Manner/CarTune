@@ -8,6 +8,7 @@ import EmailLogin from 'pages/main/EmailLogin';
 import WeatherSearchResult from 'pages/search/WeatherSearchResult';
 import Playlist from 'pages/music/Playlist';
 import SendEmail from 'pages/music/SendEmail';
+import WeatherOptions from "./pages/search/WeatherOptions";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="weather" element={ <WeatherSearch/> }/>
             {/* 아래 방식으로 값에 따른 결과 출력 */}
             <Route path="weather/result" element={ <WeatherSearchResult/> }/>
+            <Route path="weather/options" element={ <WeatherOptions/> }/>
           </Route>
 
           {/* 플레이리스트 조회 및 제어 */}

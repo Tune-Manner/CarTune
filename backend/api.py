@@ -83,7 +83,6 @@ def extract_intent_entity(input_text):
 
     return detected_intent, detected_entities
 
-# 음성 인식 및 텍스트 생성 엔드포인트
 @app.post("/transcribe/")
 async def transcribe_audio():
     recognizer = sr.Recognizer()
@@ -94,12 +93,12 @@ async def transcribe_audio():
             audio = recognizer.listen(source, timeout=5, phrase_time_limit=10)
 
         text = recognizer.recognize_google(audio, language='ko-KR')
-        
-        print("text:"+text)
+        print("text:" + text)
 
+        # 여기에 generate_answer 및 extract_intent_entity 함수를 추가
         answer = generate_answer(text)
         intent, entities = extract_intent_entity(text)
-        
+
         return {
             "text": text,
             "answer": answer,
