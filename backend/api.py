@@ -142,10 +142,10 @@ async def predict(file: UploadFile = File(...)):
     processed_image = preprocess_image(image)
     
     # 모델 예측
-    predicted_class = predict_image(processed_image)
+    predicted_class = int(predict_image(processed_image))
 
-    class_dict = {0: "Rainy", 1: "Cloudy", 2: "Sunny", 3: "Snowy", 4: "Foggy"}
-    predicted_class = class_dict[predicted_class]
+    # class_dict = {0: "Rainy", 1: "Cloudy", 2: "Sunny", 3: "Snowy", 4: "Foggy"}
+    # predicted_class = class_dict[predicted_class]
     
     # 예측 결과 반환
     return {
