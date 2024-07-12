@@ -1,0 +1,116 @@
+/* WeatherOptions.css */
+
+/* Google Fonts에서 Nunito 폰트를 import합니다. */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.email-input {
+    width: 80%;
+    padding: 20px; /* 패딩을 더 주어 높이를 높입니다 */
+    font-size: 20px;
+    border: 3px solid #9554ca; /* 보라색 두꺼운 테두리 */
+    border-radius: 5px; /* 모서리를 살짝 둥글게 */
+    height: 80px; /* 높이를 많이 증가 */
+    color: black; /* 입력된 값은 검은색 */
+    margin-bottom: 100px;
+}
+
+.email-input::placeholder {
+    color: gray; /* placeholder는 회색 */
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: column; /* 수직 정렬을 위해 추가 */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px; /* 아이콘과 입력창 사이의 간격을 많이 떨어뜨립니다 */
+    margin-top:180px;
+}
+
+.microphone-icon, .redo-icon, .loading-icon {
+    font-size: 100px;
+    cursor: pointer;
+}
+
+.microphone-icon {
+    color: #9554ca;
+}
+
+.redo-icon {
+    color: #9554ca;
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-icon {
+    animation: loading 1s linear infinite;
+    color: #9554ca;
+}
+
+.loading-message, .retry-message {
+    font-size: 20px;
+    font-weight: bold;
+    color: #9554ca;
+    margin-top: 10px; /* 아이콘과 메시지 사이의 간격 */
+    font-family: 'Nunito', sans-serif; /* 둥근 글씨체 적용 */
+}
+
+/* 새로운 스타일 추가 */
+
+/* 컨텐츠 컨테이너 */
+.content-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* 날씨 카드 컨테이너 */
+.weather-card-container {
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+/* 날씨 옵션 컨테이너 */
+.weather-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    flex-wrap: wrap; /* 필요 시 줄바꿈을 위해 추가 */
+}
+
+/* 각 날씨 옵션 카드 */
+.weather-option {
+    background-color: #9554ca; /* 보라색 배경 */
+    color: white; /* 흰색 텍스트 */
+    padding: 15px 30px; /* 패딩 */
+    margin: 10px; /* 카드 간격 */
+    border: none; /* 테두리 없음 */
+    border-radius: 5px; /* 모서리를 둥글게 */
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* 배경색 전환 애니메이션 */
+}
+
+.weather-option:hover {
+    background-color: #7a3ea6; /* 호버 시 더 어두운 보라색 */
+}
+
+.weather-option:active {
+    background-color: #5e2e7a; /* 클릭 시 더 어두운 보라색 */
+}

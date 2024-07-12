@@ -31,7 +31,7 @@ function WeatherSearchResult() {
     const handleNextStep = () => {
         // 다음 단계로 이동하는 로직을 여기에 추가
         console.log('다음 단계로 이동');
-        navigate('/search/weather/options'); // 다음 화면으로 이동하는 경로를 여기에 설정
+        navigate('/search/weather/options',{state : {weatherName}}); // 다음 화면으로 이동하는 경로를 여기에 설정
     };
 
     return (
