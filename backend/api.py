@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, HTTPException
 import speech_recognition as sr
 from transformers import BartForConditionalGeneration, PreTrainedTokenizerFast
 from tensorflow.python.keras.models import load_model
@@ -10,6 +10,15 @@ from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
 import io
 import pprint
+
+# Import functions from music.py
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+from music.music import (
+    create_and_play_playlist,
+    get_latest_playlist
+)
 
 # FastAPI 설정
 app = FastAPI()
@@ -133,12 +142,32 @@ async def predict(file: UploadFile = File(...)):
     processed_image = preprocess_image(image)
     
     # 모델 예측
-    predicted_class = predict_image(processed_image)
+    predicted_class = int(predict_image(processed_image))
+
+    # class_dict = {0: "Rainy", 1: "Cloudy", 2: "Sunny", 3: "Snowy", 4: "Foggy"}
+    # predicted_class = class_dict[predicted_class]
     
     # 예측 결과 반환
     return {
-        "predicted_class": int(predicted_class)
+        "predicted_class": predicted_class
     }
+
+# 새로운 엔드포인트 추가
+@app.post("/create_and_play_playlist/")
+async def create_playlist_endpoint():
+    try:
+        result = create_and_play_playlist()
+        return result
+    except HTTPException as e:
+        return {"error": str(e)}
+
+@app.get("/latest_playlist/")
+async def latest_playlist_endpoint():
+    try:
+        result = get_latest_playlist()
+        return result
+    except HTTPException as e:
+        return {"error": str(e)}
 
 if __name__ == "__main__":
     import uvicorn

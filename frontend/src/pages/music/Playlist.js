@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Container, Row } from "react-bootstrap";
 import { FiShare } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { BsFillPlayFill } from "react-icons/bs";
 import './Playlist.css';  // CSS 파일 추가
@@ -23,7 +22,7 @@ function Playlist() {
         background: 'linear-gradient(135deg, #1e1e1e, #3B2951)',
         color: 'white'
     };
-  
+
     const fetchLatestPlaylist = async () => {
         try {
             const response = await axios.get('http://127.0.0.1:8000/latest_playlist');
