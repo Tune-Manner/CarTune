@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophone, faRedo, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import './WeatherOptions.css'; // CSS 파일을 import 합니다.
+import WeatherCard_v2 from 'custom-components/card/WeatherCard_v2';
 
 function WeatherOptions() {
+    const location = useLocation();
+    const { weatherName } = location.state || {};
     const [recording, setRecording] = useState(false);
     const [transcript, setTranscript] = useState('');
     const [error, setError] = useState('');
+    const [entities, setEntities] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (transcript) {
+            const timer = setTimeout(() => {
+                navigate('/playlist', { state: { entities } });
+            }, 3000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [transcript, navigate, entities]);
 
     const startRecording = async () => {
         setRecording(true);
@@ -21,10 +37,12 @@ function WeatherOptions() {
                 }
             });
             const data = await response.json();
+            console.log("음성 텍스트:", data);
             if (data.error) {
                 setError(data.error);
             } else {
                 setTranscript(data.text);
+                setEntities(data.entities);
             }
         } catch (e) {
             setError("음성 인식 요청 중 오류가 발생했습니다.");
@@ -43,10 +61,12 @@ function WeatherOptions() {
                     }
                 });
                 const data = await response.json();
+                console.log("음성 텍스트:", data);
                 if (data.error) {
                     setError(data.error);
                 } else {
                     setTranscript(data.text);
+                    setEntities(data.entities);
                 }
             } catch (e) {
                 setError("음성 인식 요청 중 오류가 발생했습니다.");
@@ -55,7 +75,7 @@ function WeatherOptions() {
     };
 
     return (
-        <>
+        <div className="container">
             <div className="icon-container" onClick={recording ? null : startRecording}>
                 {error ? (
                     <>
@@ -85,7 +105,10 @@ function WeatherOptions() {
                     onBlur={handleInputBlur}
                 />
             </div>
-        </>
+            <div className="weather-card-container">
+                <WeatherCard_v2 weatherName={weatherName} />
+            </div>
+        </div>
     );
 }
 

@@ -1,10 +1,12 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { FiShare } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 
 function Playlist() {
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const { entities } = location.state || {};
 
     // 로고 클릭 시 메인 페이지로 이동
     const onClickHandler = () => navigate("/");
@@ -28,6 +30,10 @@ function Playlist() {
                     alt="logo"
                     onClick={onClickHandler}
                 />
+                <div>
+                    <h1>다음 페이지</h1>
+                    <p>엔티티 데이터: {JSON.stringify(entities)}</p>
+                </div>
                 <Row className="px-5">
                     <Col className="col-6">
                         <div
