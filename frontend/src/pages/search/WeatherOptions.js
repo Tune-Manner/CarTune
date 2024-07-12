@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
 
 function WeatherOptions() {
     const [recording, setRecording] = useState(false);
@@ -30,12 +32,18 @@ function WeatherOptions() {
         }
     };
 
+    useEffect(() => {
+        startRecording();
+    }, []);
+
     return (
         <>
             <h1>하이미디어</h1>
-            <button onClick={startRecording} disabled={recording}>
-                {recording ? "녹음 중..." : "음성 인식 시작"}
-            </button>
+            {recording && (
+                <div style={{ fontSize: '2em', color: 'red' }}>
+                    <FontAwesomeIcon icon={faMicrophone} />
+                </div>
+            )}
             {transcript && (
                 <p>인식된 텍스트: {transcript}</p>
             )}
