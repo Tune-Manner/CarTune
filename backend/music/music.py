@@ -14,19 +14,25 @@ app = FastAPI()
 
 CLIENT_ID = "ac56d5b5d54b42f18ebdae8323547f75"
 
-with open("../credentials/encryption_key.key", "rb") as key_file:
+# 암호화 키에 대한 절대 경로 사용
+base_dir = os.path.dirname(os.path.abspath(__file__))
+print(base_dir)
+print(base_dir[:-6])
+print(base_dir[:-6].replace("\\", "/"))
+with open(base_dir[:-6].replace("\\", "/") + "/credentials/encryption_key.key", "rb") as key_file:
     key = key_file.read()
 
-cipher_suite =Fernet(key)
+cipher_suite = Fernet(key)
+CLIENT_SECRET = cipher_suite.decrypt(Encrypted_text).decode()
+print(CLIENT_SECRET)
 
-CLIENT_SECRET = cipher_suite.decrypt(Encrypted_text).decode(  )
-
-with open("../credentials/encryption_key1.key", "rb") as key_file:
+with open(base_dir[:-6].replace("\\", "/") + "/credentials/encryption_key1.key", "rb") as key_file:
     key = key_file.read()
 
 cipher_suite = Fernet(key)
 
 REFRESH_TOKEN = cipher_suite.decrypt(Encrypted_text1).decode()
+print(REFRESH_TOKEN)
 
 # CORS 설정 추가
 origins = [

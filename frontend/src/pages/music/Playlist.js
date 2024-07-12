@@ -152,7 +152,6 @@ function Playlist() {
                                     <div className="track-duration">{Math.floor(item.track.duration_ms / 60000)}:{Math.floor((item.track.duration_ms % 60000) / 1000).toFixed(0).padStart(2, '0')}</div>
                                 </div>
                             ))}
-
                         </div>
                     )}
                 </Col>
