@@ -76,10 +76,7 @@ function WeatherOptions() {
 
     return (
         <div className="container">
-            {/*<div className="weather-card-container">*/}
-            {/*    <WeatherCard_v2 weatherName={weatherName} />*/}
-            {/*</div>*/}
-            <div>
+            <div className="main-content">
                 <div className="icon-container" onClick={recording ? null : startRecording}>
                     {error ? (
                         <>
@@ -100,10 +97,10 @@ function WeatherOptions() {
                     )}
                 </div>
                 <div>
-                <h1 className={"des"}>세부 옵션을 설정하면 <br/>더 적절한 리스트가 만들어져요.</h1>
+                    <h1 className="des">세부 옵션을 설정하면 <br />더 적절한 리스트가 만들어져요.</h1>
                 </div>
                 <div>
-                <p className={"des2"}>아래와 같은 카테고리를 기반으로 <br/>옵션을 추가할 수 있어요.</p>
+                    <p className="des2">아래와 같은 카테고리를 기반으로 <br />옵션을 추가할 수 있어요.</p>
                 </div>
                 <div className="tags-container">
                     <span className="tag" style={{ backgroundColor: '#FFEB3B' }}>🌆 시티팝</span>
@@ -123,8 +120,12 @@ function WeatherOptions() {
                     />
                 </div>
             </div>
+            <div className="weather-card-container">
+                <WeatherCard_v2 weatherName={weatherName} />
+            </div>
         </div>
     );
+
 }
 
 export default WeatherOptions;

@@ -4,7 +4,6 @@ import {
     CardContent,
     CardFooter,
 } from "components/ui/card";
-import SearchBtn from "custom-components/btn/SearchBtn";
 import { TiWeatherCloudy, TiWeatherShower, TiWeatherSunny, TiWeatherSnow, TiWeatherWindyCloudy } from "react-icons/ti";
 
 function WeatherCard_v2({ weatherName, noValue }) {
@@ -54,8 +53,8 @@ function WeatherCard_v2({ weatherName, noValue }) {
 
     return !noValue ? (
         // 값을 직접 넣는 카드의 경우
-        <Card className="w-[450px] h-[470px] mx-3 flex flex-col items-center" style={{ borderRadius: '10px' }}>
-            <CardContent className="grid w-full mt-5 h-[200px] text-center justify-center pb-0">
+        <Card className="w-[450px] h-[715px] mx-3 flex flex-col items-center justify-center" style={{ borderRadius: '10px' }}>
+            <CardContent className="grid w-full h-full text-center justify-center items-center pb-0">
                 {weatherIcon}
             </CardContent>
             <CardFooter className="flex flex-col items-center">
@@ -67,8 +66,8 @@ function WeatherCard_v2({ weatherName, noValue }) {
         </Card>
     ) : (
         // 값을 수동으로 넣는 카드의 경우
-        <Card className="w-[200px] h-[280px] mx-1" style={{ borderRadius: '10px' }}>
-            <CardContent className="grid w-full mt-0 h-[180px] text-center justify-center pb-0">
+        <Card className="w-[200px] h-[715px] mx-1 flex flex-col items-center justify-center" style={{ borderRadius: '10px' }}>
+            <CardContent className="grid w-full h-full text-center justify-center items-center pb-0">
                 {weatherIcon}
             </CardContent>
             <CardFooter className="flex flex-col items-center">
@@ -82,3 +81,4 @@ function WeatherCard_v2({ weatherName, noValue }) {
 }
 
 export default WeatherCard_v2;
+
