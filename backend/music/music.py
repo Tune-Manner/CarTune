@@ -98,7 +98,8 @@ def search_tracks(headers, songs):
         if search_result['tracks']['items']:
             track_uris.append(search_result['tracks']['items'][0]['uri'])
         else:
-            raise HTTPException(status_code=404, detail=f"Track {song['title']} by {song['artist']} not found")
+            # raise HTTPException(status_code=404, detail=f"Track {song['title']} by {song['artist']} not found")
+            print(f"Track {song['title']} by {song['artist']} not found")
     return track_uris
 
 def add_tracks_to_playlist(headers, playlist_id, track_uris):
@@ -142,6 +143,7 @@ def create_and_play_playlist():
 
         # 2. 사용자 ID 가져오기
         user_id = get_user_id(headers)
+        
 
         # 3. 플레이리스트 생성
         playlist_id = create_playlist(headers, user_id, gptPrompt(weather)['playlist_name'])
