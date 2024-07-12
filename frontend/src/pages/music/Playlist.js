@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Container, Row } from "react-bootstrap";
 import { FiShare } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { BsFillPlayFill } from "react-icons/bs";
 import './Playlist.css';  // CSS 파일 추가

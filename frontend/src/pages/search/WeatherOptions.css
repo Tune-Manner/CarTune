@@ -30,7 +30,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 100px; /* 아이콘과 입력창 사이의 간격을 많이 떨어뜨립니다 */
-    margin-top:180px;
+    margin-top: 180px;
 }
 
 .microphone-icon, .redo-icon, .loading-icon {
@@ -114,6 +114,35 @@
 .weather-option:active {
     background-color: #5e2e7a; /* 클릭 시 더 어두운 보라색 */
 }
-.des{
+
+.des {
     text-align: center;
+    color: gray;
+}
+
+.des2 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: normal;
+    color: gray;
+}
+
+.tags-container {
+    display: flex;
+    justify-content: center; /* 태그가 중앙에 배치되도록 설정 */
+    gap: 10px; /* 태그 간격 조정 */
+    flex-wrap: wrap; /* 태그가 여러 줄로 배치될 수 있도록 */
+    margin-bottom:30px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin: 5px 0; /* 태그 간격 조정 */
 }
