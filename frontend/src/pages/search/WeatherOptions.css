@@ -1,33 +1,68 @@
+
+/* WeatherOptions.css */
+
+/* Google Fonts에서 Nunito 폰트를 import합니다. */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
 .input-container {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
-    align-items: center;
-    width: 90%;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .email-input {
-    width: 100%;
-    padding: 10px 40px 10px 10px; /* 오른쪽 패딩 추가하여 아이콘 공간 확보 */
-    border: 2px solid #d3b0ff; /* 연한 보라색 테두리 */
-    border-radius: 5px; /* 둥근 모서리 */
-    box-sizing: border-box; /* 패딩 포함한 크기 조정 */
+    width: 80%;
+    padding: 20px; /* 패딩을 더 주어 높이를 높입니다 */
+    font-size: 20px;
+    border: 3px solid #9554ca; /* 보라색 두꺼운 테두리 */
+    border-radius: 5px; /* 모서리를 살짝 둥글게 */
+    height: 80px; /* 높이를 많이 증가 */
+    color: black; /* 입력된 값은 검은색 */
+}
+
+.email-input::placeholder {
+    color: gray; /* placeholder는 회색 */
 }
 
 .icon-container {
-    position: absolute;
-    right: 10px;
     display: flex;
+    flex-direction: column; /* 수직 정렬을 위해 추가 */
+    justify-content: center;
     align-items: center;
+    margin-bottom: 50px; /* 아이콘과 입력창 사이의 간격을 많이 떨어뜨립니다 */
+}
+
+.microphone-icon, .redo-icon, .loading-icon {
+    font-size: 100px;
     cursor: pointer;
 }
 
 .microphone-icon {
-    color: #333;
+    color: #9554ca;
 }
 
 .redo-icon {
-    color: #333;
+    color: #9554ca;
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-icon {
+    animation: loading 1s linear infinite;
+    color: #9554ca;
+}
+
+.loading-message, .retry-message {
+    font-size: 20px;
+    font-weight: bold;
+    color: #9554ca;
+    margin-top: 10px; /* 아이콘과 메시지 사이의 간격 */
+    font-family: 'Nunito', sans-serif; /* 둥근 글씨체 적용 */
 }
