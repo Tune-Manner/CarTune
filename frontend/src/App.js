@@ -10,6 +10,7 @@ import EmailLogin from './pages/main/EmailLogin';
 import WeatherSearchResult from './pages/search/WeatherSearchResult';
 import Playlist from './pages/music/Playlist';
 import SendEmail from './pages/music/SendEmail';
+import WeatherOptions from './pages/search/WeatherOptions';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function AnimatedRoutes() {
           <Route index element={<Navigate to="/search/weather" replace />} />
           <Route path="weather" element={<PageTransition><WeatherSearch /></PageTransition>} />
           <Route path="weather/result" element={<PageTransition><WeatherSearchResult /></PageTransition>} />
+          <Route path="weather/options" element={<PageTransition><WeatherOptions /></PageTransition>} />
         </Route>
 
         {/* 플레이리스트 조회 및 제어 */}

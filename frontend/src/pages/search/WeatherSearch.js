@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchBtn from "custom-components/btn/SearchBtn";
 import WeatherCard from "custom-components/card/WeatherCard";
@@ -22,6 +22,13 @@ function WeatherSearch() {
 
     const { weather } = useSelector(state => state.weatherReducer);
 
+    useEffect(() => {
+        if (weather && weather.predicted_class) {
+            console.log("예측 된 날씨", weather.predicted_class);
+            navigate('/search/weather/result', { state: { image, predictedClass: weather.predicted_class } });
+        }
+    }, [weather, navigate, image]);
+
     const handleButtonClick = () => {
         fileInputRef.current.click();
     };
@@ -29,16 +36,8 @@ function WeatherSearch() {
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
         if (file) {
-            // API 호출 액션 디스패치
+            setImage(URL.createObjectURL(file)); // 이미지 URL을 상태에 저장
             await dispatch(callWeatherPredictAPI(file));
-
-            // weather 객체 확인 후 navigate
-            if (weather && weather.predicted_class) {
-                console.log("예측 된 날씨", weather.predicted_class);
-                navigate('/search/weather/result', { state: { image: URL.createObjectURL(file), predictedClass: weather.predicted_class } });
-            } else {
-                console.error("예측된 날씨를 가져올 수 없습니다.");
-            }
         }
     };
 
