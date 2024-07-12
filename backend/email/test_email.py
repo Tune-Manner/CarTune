@@ -32,7 +32,7 @@ def send_email(addr, msg, smtp, my_account):
     else:
         raise HTTPException(status_code=400, detail="받으실 메일 주소를 정확히 입력하십시오.")
 
-@app.post("/send-playlist/")
+@app.post("/playlist/send-email/")
 async def send_playlist(email_request: EmailRequest):
     to_mail = email_request.email
     playlist_created_date = email_request.playlist_created_date
