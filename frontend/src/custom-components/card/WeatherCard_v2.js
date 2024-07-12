@@ -6,6 +6,7 @@ import {
 } from "components/ui/card";
 import SearchBtn from "custom-components/btn/SearchBtn";
 import { TiWeatherCloudy, TiWeatherShower, TiWeatherSunny, TiWeatherSnow, TiWeatherWindyCloudy } from "react-icons/ti";
+
 function WeatherCard_v2({ weatherName, noValue }) {
     let weatherIcon;
     let weatherKrName;
@@ -36,15 +37,32 @@ function WeatherCard_v2({ weatherName, noValue }) {
             break;
     }
 
+    const h2Style = {
+        fontWeight: 'bold',
+        fontSize: '24px',
+        marginBottom: '30px', // 간격을 위한 마진 추가
+    };
+
+    const pStyle = {
+        fontSize: '24px', // 글자 크기 키우기
+    };
+
+    const weatherKrNameStyle = {
+        fontWeight: 'bold',
+        color: 'red', // 강조를 위한 색상 추가
+    };
+
     return !noValue ? (
         // 값을 직접 넣는 카드의 경우
         <Card className="w-[450px] h-[470px] mx-3 flex flex-col items-center" style={{ borderRadius: '10px' }}>
             <CardContent className="grid w-full mt-5 h-[200px] text-center justify-center pb-0">
                 {weatherIcon}
             </CardContent>
-            <CardFooter className="flex flex-col">
-                <h2>{weatherName}</h2>
-                <p className="fs-6">저희가 인식한 날씨는 '{weatherKrName}'입니다.</p>
+            <CardFooter className="flex flex-col items-center">
+                <h2 style={h2Style}>{weatherName}</h2>
+                <h3 className="fs-6" style={pStyle}>
+                    저희가 인식한 날씨는 '<span style={weatherKrNameStyle}>{weatherKrName}</span>'입니다.
+                </h3>
             </CardFooter>
         </Card>
     ) : (
@@ -54,8 +72,10 @@ function WeatherCard_v2({ weatherName, noValue }) {
                 {weatherIcon}
             </CardContent>
             <CardFooter className="flex flex-col items-center">
-                <h2>{weatherName}</h2>
-                <div>{weatherKrName}</div>
+                <h2 style={h2Style}>{weatherName}</h2>
+                <div style={pStyle}>
+                    <span style={weatherKrNameStyle}>{weatherKrName}</span>
+                </div>
             </CardFooter>
         </Card>
     );

@@ -76,6 +76,9 @@ function WeatherOptions() {
 
     return (
         <div className="container">
+            {/*<div className="weather-card-container">*/}
+            {/*    <WeatherCard_v2 weatherName={weatherName} />*/}
+            {/*</div>*/}
             <div className="icon-container" onClick={recording ? null : startRecording}>
                 {error ? (
                     <>
@@ -104,9 +107,6 @@ function WeatherOptions() {
                     readOnly
                     onBlur={handleInputBlur}
                 />
-            </div>
-            <div className="weather-card-container">
-                <WeatherCard_v2 weatherName={weatherName} />
             </div>
         </div>
     );

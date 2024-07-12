@@ -17,6 +17,7 @@
     border-radius: 5px; /* 모서리를 살짝 둥글게 */
     height: 80px; /* 높이를 많이 증가 */
     color: black; /* 입력된 값은 검은색 */
+    margin-bottom: 100px;
 }
 
 .email-input::placeholder {
@@ -28,7 +29,8 @@
     flex-direction: column; /* 수직 정렬을 위해 추가 */
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px; /* 아이콘과 입력창 사이의 간격을 많이 떨어뜨립니다 */
+    margin-bottom: 100px; /* 아이콘과 입력창 사이의 간격을 많이 떨어뜨립니다 */
+    margin-top:180px;
 }
 
 .microphone-icon, .redo-icon, .loading-icon {
