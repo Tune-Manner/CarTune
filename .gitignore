@@ -4,7 +4,7 @@
 ### Python ###
 # Byte-compiled / optimized / DLL files
 backend/__pycache__/
-backend/keys.py
+backend/credentials/
 *.py[cod]
 *$py.class
 
