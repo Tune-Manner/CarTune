@@ -6,7 +6,7 @@ function Playlist() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const { entities } = location.state || {};
+    const { entities,weatherName } = location.state || {};
 
     // 로고 클릭 시 메인 페이지로 이동
     const onClickHandler = () => navigate("/");
@@ -32,7 +32,8 @@ function Playlist() {
                 />
                 <div>
                     <h1>다음 페이지</h1>
-                    <p>엔티티 데이터: {JSON.stringify(entities)}</p>
+                    <p>키워드 데이터: {JSON.stringify(entities)}</p>
+                    <p>날씨 데이터 : {weatherName}</p>
                 </div>
                 <Row className="px-5">
                     <Col className="col-6">
