@@ -114,3 +114,6 @@
 .weather-option:active {
     background-color: #5e2e7a; /* 클릭 시 더 어두운 보라색 */
 }
+.des{
+    text-align: center;
+}
