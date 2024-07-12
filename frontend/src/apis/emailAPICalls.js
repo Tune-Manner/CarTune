@@ -8,8 +8,9 @@ export const callSendPlaylistAPI = ({ emailData }) => {
       try {
           const result = await axios.post('/playlist/send-email', emailData, {
               headers: {
-                  'Content-Type': 'application/json'
-              }
+                  'Content-Type': 'application/json',
+              },
+              'credentials': 'include'
           });
           console.log('emailData result : ', result)
 
