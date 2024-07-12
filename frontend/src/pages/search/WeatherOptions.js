@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
+import './WeatherOptions.css'; // CSS 파일을 import 합니다.
 
 function WeatherOptions() {
     const [recording, setRecording] = useState(false);
@@ -39,14 +40,18 @@ function WeatherOptions() {
     return (
         <>
             <h1>하이미디어</h1>
-            {recording && (
-                <div style={{ fontSize: '2em', color: 'red' }}>
+            <div className="input-container">
+                <input
+                    type="text"
+                    value={transcript}
+                    placeholder="ex. ost로 등록된 재즈 느낌의 대한민국 피아노 곡을 추천해줘."
+                    className="email-input"
+                    readOnly
+                />
+                <div className={`microphone-icon ${recording ? 'recording' : ''}`}>
                     <FontAwesomeIcon icon={faMicrophone} />
                 </div>
-            )}
-            {transcript && (
-                <p>인식된 텍스트: {transcript}</p>
-            )}
+            </div>
             {error && (
                 <p style={{ color: 'red' }}>{error}</p>
             )}

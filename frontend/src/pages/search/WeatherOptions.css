@@ -1,0 +1,33 @@
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.email-input {
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* 오른쪽 패딩 추가하여 마이크 아이콘 공간 확보 */
+    border: 2px solid #d3b0ff; /* 연한 보라색 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    box-sizing: border-box; /* 패딩 포함한 크기 조정 */
+}
+
+.microphone-icon {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.microphone-icon.recording {
+    animation: blink 1s infinite;
+    color: red;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
