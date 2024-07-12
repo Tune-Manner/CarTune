@@ -5,10 +5,13 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { BsFillPlayFill } from "react-icons/bs";
 import './Playlist.css';  // CSS 파일 추가
+import { useNavigate,useLocation } from "react-router-dom";
 
 function Playlist() {
     const [playlistDetails, setPlaylistDetails] = useState(null);
     const navigate = useNavigate();
+    const location = useLocation();
+    const { entities } = location.state || {};
 
     // 로고 클릭 시 메인 페이지로 이동
     const onClickHandler = () => navigate("/");
@@ -20,7 +23,7 @@ function Playlist() {
         background: 'linear-gradient(135deg, #1e1e1e, #3B2951)',
         color: 'white'
     };
-
+  
     const fetchLatestPlaylist = async () => {
         try {
             const response = await axios.get('http://127.0.0.1:8000/latest_playlist');
@@ -150,6 +153,7 @@ function Playlist() {
                                     <div className="track-duration">{Math.floor(item.track.duration_ms / 60000)}:{Math.floor((item.track.duration_ms % 60000) / 1000).toFixed(0).padStart(2, '0')}</div>
                                 </div>
                             ))}
+
                         </div>
                     )}
                 </Col>
