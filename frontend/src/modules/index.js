@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
 import weatherReducer from "./WeatherModules";
+import emailReducer from "./EmailModules";
 
 const rootReducer = combineReducers({
-    weatherReducer
+    weatherReducer, emailReducer
 })
 
 export default rootReducer;
