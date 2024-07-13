@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Col, Container, Row } from "react-bootstrap";
 import { FiShare } from "react-icons/fi";
 import axios from 'axios';
 import { BsFillPlayFill } from "react-icons/bs";
 import './Playlist.css';  // CSS 파일 추가
-import { useNavigate,useLocation } from "react-router-dom";
+
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Playlist() {
     const [playlistDetails, setPlaylistDetails] = useState(null);
+    const [playlistId, setPlaylistId] = useState(null);  // 플레이리스트 ID 상태 변수 추가
     const navigate = useNavigate();
     const location = useLocation();
-    const { entities,weatherName } = location.state || {};
 
     // 로고 클릭 시 메인 페이지로 이동
     const onClickHandler = () => navigate("/");
@@ -23,10 +24,16 @@ function Playlist() {
         color: 'white'
     };
 
+    useEffect(() => {
+        fetchLatestPlaylist();
+    }, []);
+
+
     const fetchLatestPlaylist = async () => {
         try {
             const response = await axios.get('http://127.0.0.1:8000/latest_playlist');
             const { playlist_id, refresh_token, playlist_name } = response.data;
+            setPlaylistId(playlist_id);  // 최신 플레이리스트 ID 설정
             const accessToken = await getAccessToken(refresh_token);
             fetchPlaylistDetails(playlist_id, accessToken);
         } catch (error) {
@@ -106,6 +113,15 @@ function Playlist() {
         }
     };
 
+    // 이메일 전송 버튼 클릭 시 이벤트 핸들러
+    const onEmailButtonClick = () => {
+        if (playlistId) {
+            navigate(`/playlist/send-email/${playlistId}`); // playlistId를 URL에 추가하여 전송
+        } else {
+            alert("플레이리스트가 존재하지 않습니다.");
+        }
+    };
+
     return (
         <Container style={containerStyle}>
             <img
@@ -137,7 +153,7 @@ function Playlist() {
                 <Col className="col-6 text-align-center">
                     <h1 className="d-flex text-between px-4">
                         {playlistDetails ? playlistDetails.name : 'Playlist'} &nbsp;
-                        <FiShare onClick={() => navigate('/playlist/send-email')} className="text-end" width={200} height={200} />
+                        <FiShare onClick={onEmailButtonClick} className="text-end" width={200} height={200} />
                     </h1>
                     {playlistDetails && (
                         <div className="track-list">

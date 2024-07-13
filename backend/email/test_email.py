@@ -5,8 +5,23 @@ import smtplib
 import re
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from fastapi.middleware.cors import CORSMiddleware
 
+# FastAPI 설정
 app = FastAPI()
+
+# CORS 설정
+origins = [
+    "http://localhost:3000"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # MySQL 데이터베이스 연결
 def get_db_connection():
@@ -32,7 +47,7 @@ def send_email(addr, msg, smtp, my_account):
     else:
         raise HTTPException(status_code=400, detail="받으실 메일 주소를 정확히 입력하십시오.")
 
-@app.post("/send-playlist/")
+@app.post("/playlist/send-email/")
 async def send_playlist(email_request: EmailRequest):
     to_mail = email_request.email
     playlist_created_date = email_request.playlist_created_date
@@ -61,17 +76,18 @@ async def send_playlist(email_request: EmailRequest):
     db.commit()
     playlist_id = cursor.lastrowid
 
-    # 플레이리스트에 노래 추가
-    songs = [('가수1', '노래1', playlist_id), ('가수2', '노래2', playlist_id)]  # 이 데이터는 동적으로 받아오거나 정의할 수 있음
-    cursor.executemany("""
-        INSERT INTO playlist_song (artist_name, playlist_song_title, playlist_id) 
-        VALUES (%s, %s, %s)
-        """, songs)
+    # playlist_id를 이용하여 playlist_url 생성 및 업데이트
+    playlist_url = f"https://open.spotify.com/playlist/{playlist_id}"
+    cursor.execute("""
+        UPDATE playlist
+        SET playlist_url = %s
+        WHERE playlist_id = %s
+    """, (playlist_url, playlist_id))
     db.commit()
 
     # 데이터를 가져오는 SQL 쿼리 
     cursor.execute("""
-        SELECT p.playlist_created_date, w.weather_title
+        SELECT p.playlist_created_date, w.weather_title, p.playlist_url
         FROM playlist p
         JOIN weather w ON p.weather_id = w.weather_id
         WHERE p.playlist_id = %s
@@ -80,6 +96,7 @@ async def send_playlist(email_request: EmailRequest):
 
     playlist_created_date = playlist[0]
     weather_title = playlist[1]
+    playlist_url = playlist[2]
 
     # weather_title 변환
     weather_description = ""
@@ -100,7 +117,7 @@ async def send_playlist(email_request: EmailRequest):
     songs = cursor.fetchall()
 
     # 트랙 목록 구성
-    tracks = "\n".join([f"{i+1}. {song[0]}" for i, song in enumerate(songs)])
+    # tracks = "\n".join([f"{i+1}. {song[0]}" for i, song in enumerate(songs)])
 
     # SMTP 서버와 연결
     gmail_smtp = "smtp.gmail.com"
@@ -120,14 +137,14 @@ async def send_playlist(email_request: EmailRequest):
 
     # 메일 본문 내용
     content = f"""안녕하세요, \n\
-{weather_description}에 어울리는 플레이리스트를 전송 드립니다.\n\n\
-트랙 목록: \n\
-{tracks}\n\n\
-플레이리스트 생성일자: {playlist_created_date}\n\n\
-주행 중에 더욱 편안한 시간을 보내시길 바랍니다.\n\
-저희 CarTune은 언제나 고객님의 만족을 위해 최선을 다하겠습니다.\n\n\
-감사합니다.\n\
-"""
+    {weather_description}에 어울리는 플레이리스트를 전송 드립니다.\n\n\
+    트랙: \n\
+    {playlist_url}\n\n\
+    플레이리스트 생성일자: {playlist_created_date}\n\n\
+    주행 중에 더욱 편안한 시간을 보내시길 바랍니다.\n\
+    저희 CarTune은 언제나 고객님의 만족을 위해 최선을 다하겠습니다.\n\n\
+    감사합니다.\n\
+    """
     content_part = MIMEText(content, "plain")
     msg.attach(content_part)
 
