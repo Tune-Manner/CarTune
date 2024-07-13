@@ -1,10 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchBtn from "custom-components/btn/SearchBtn";
-import WeatherCard from "custom-components/card/WeatherCard";
+import WeatherCard_v3 from "custom-components/card/WeatherCard_v3";
 import { Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { callWeatherPredictAPI } from "../../apis/weatherAPICalls";
+import WeatherCard from "../../custom-components/card/WeatherCard";
 
 const weatherMapping = {
     1: "Rainy",
@@ -23,9 +24,9 @@ function WeatherSearch() {
     const { weather } = useSelector(state => state.weatherReducer);
 
     useEffect(() => {
-        if (weather && weather.predicted_class) {
-            console.log("예측 된 날씨", weather.predicted_class);
-            navigate('/search/weather/result', { state: { image, predictedClass: weather.predicted_class } });
+        if (weather && weather.tags) {
+            console.log("예측 된 날씨", weather.tags);
+            navigate('/search/weather/result', { state: { image, predictedClass: weather.tags } });
         }
     }, [weather, navigate, image]);
 
@@ -45,7 +46,7 @@ function WeatherSearch() {
         <>
             <Container className="d-flex align-items-center justify-content-center flex-column p-5">
                 <h1>풍경을 업로드해주세요.</h1>
-                <p className="py-2">날씨를 인식해서 음악을 추천해 드릴게요!</p>
+                <p className="py-2">풍경을 인식해서 음악을 추천해 드릴게요!</p>
                 <SearchBtn
                     buttonTitle={"풍경 업로드하기"}
                     onClick={handleButtonClick}
