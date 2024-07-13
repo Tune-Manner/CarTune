@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS */
+@layer base {
+  :root {
+    /* --background: 265 48.75% 4.8%; */
+    /* --foreground: 265 7.5% 98%; */
+    --tune: 264 71% 60%;
+    --tune-foreground: #FFFFFF;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-foreground;
+  }
+
+  h1 {
+    @apply text-3xl font-bold;
+  }
+
+  h2 {
+    @apply text-2xl font-bold;
+  }
+
+  h3 {
+    @apply text-xl font-bold;
+  }
+
+  h4 {
+    @apply text-lg font-semibold;
+  }
+
+  h5 {
+    @apply text-base font-semibold;
+  }
+
+  h6 {
+    @apply text-sm font-semibold;
+  }
+}
