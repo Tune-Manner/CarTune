@@ -6,6 +6,8 @@
 backend/__pycache__/
 backend/credentials/
 backend/keys.py
+backend/models/ram_swin_large_14m.pth
+backend/vision/sample_images/
 *.py[cod]
 *$py.class
 
@@ -211,3 +213,4 @@ sketch
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,react
+
