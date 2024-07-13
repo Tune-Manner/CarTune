@@ -52,12 +52,6 @@ class Song(BaseModel):
     title: str
     artist: str
 
-# class PlaylistRequest(BaseModel):
-#     songs = gptPrompt(weather)['songs']
-#     playlist_name = gptPrompt(weather)['playlist_name']
-#     songs: List[Song]
-#     playlist_name: str
-
 def refresh_access_token(REFRESH_TOKEN):
     refresh_response = requests.post("https://accounts.spotify.com/api/token", data={
         'grant_type': 'refresh_token',
@@ -103,7 +97,6 @@ def search_tracks(headers, songs):
         if search_result['tracks']['items']:
             track_uris.append(search_result['tracks']['items'][0]['uri'])
         else:
-            # raise HTTPException(status_code=404, detail=f"Track {song['title']} by {song['artist']} not found")
             print(f"Track {song['title']} by {song['artist']} not found")
     return track_uris
 
@@ -167,10 +160,11 @@ def create_and_play_playlist(playlist_data):
         latest_playlist_info = {
             "playlist_key": playlist_id,
             "track_uris": track_uris,
-            "refresh_token": REFRESH_TOKEN
+            "refresh_token": REFRESH_TOKEN,
+            "client_secret": CLIENT_SECRET  # client_secret 추가
         }
 
-        return {"playlist_key": playlist_id, "track_uris": track_uris, "refresh_token": REFRESH_TOKEN}
+        return {"playlist_key": playlist_id, "track_uris": track_uris, "refresh_token": REFRESH_TOKEN, "client_secret": CLIENT_SECRET}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -183,8 +177,3 @@ def get_latest_playlist():
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8000)
-
-
-
-
-

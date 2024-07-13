@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 function Playlist() {
     const [playlistDetails, setPlaylistDetails] = useState(null);
-    const [playlistId, setPlaylistId] = useState(null);  // 플레이리스트 ID 상태 변수 추가
+    const [playlist_key, setPlaylistId] = useState(null);  // 플레이리스트 ID 상태 변수 추가
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -32,23 +32,23 @@ function Playlist() {
     const fetchLatestPlaylist = async () => {
         try {
             const response = await axios.get('http://127.0.0.1:8000/latest_playlist');
-            const { playlist_id, refresh_token, playlist_name } = response.data;
-            setPlaylistId(playlist_id);  // 최신 플레이리스트 ID 설정
-            const accessToken = await getAccessToken(refresh_token);
-            fetchPlaylistDetails(playlist_id, accessToken);
+            const { playlist_key, refresh_token, playlist_name, client_secret } = response.data;
+            setPlaylistId(playlist_key);  // 최신 플레이리스트 ID 설정
+            const accessToken = await getAccessToken(refresh_token, client_secret);
+            fetchPlaylistDetails(playlist_key, accessToken);
         } catch (error) {
             console.error('최신 플레이리스트 정보를 가져오는 중 오류 발생:', error);
         }
     };
 
-    const getAccessToken = async (refreshToken) => {
+    const getAccessToken = async (refreshToken, clientSecret) => {
         try {
             const response = await axios.post('https://accounts.spotify.com/api/token', null, {
                 params: {
                     grant_type: 'refresh_token',
                     refresh_token: refreshToken,
                     client_id: 'ac56d5b5d54b42f18ebdae8323547f75',
-                    client_secret: process.env.REACT_APP_CLIENT_SECRET,
+                    client_secret: clientSecret,
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -60,9 +60,9 @@ function Playlist() {
         }
     };
 
-    const fetchPlaylistDetails = async (playlistId, accessToken) => {
+    const fetchPlaylistDetails = async (playlist_key, accessToken) => {
         try {
-            const response = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+            const response = await axios.get(`https://api.spotify.com/v1/playlists/${playlist_key}`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
@@ -124,14 +124,18 @@ function Playlist() {
 
     return (
         <Container style={containerStyle}>
-            <img
-                src="/cartune-logo-white.png"
-                width="70"
-                height="70"
-                className="align-top mx-5 mb-5"
-                alt="logo"
-                onClick={onClickHandler}
-            />
+            <Row>
+                <Col className="text-left">
+                    <img
+                        src="/cartune-logo-white.png"
+                        width="70"
+                        height="70"
+                        className="align-top mx-5 mb-5"
+                        alt="logo"
+                        onClick={onClickHandler}
+                    />
+                </Col>
+            </Row>
             <button
                 className="btn btn-primary play-button"
                 onClick={playPlaylist}
