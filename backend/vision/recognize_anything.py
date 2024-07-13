@@ -1,53 +1,43 @@
+from fastapi import FastAPI, UploadFile, File
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 import torch
-from torchvision import transforms
+import numpy as np
 from PIL import Image
-import requests
-from io import BytesIO
+from ram.models import ram
+from ram import inference_ram as inference
+from ram import get_transform
+import io
 
-# 모델 경로 및 클래스 정의 파일 경로
-model_path = 'ram_swin_large_14m.pth'
-# class_file_path = 'path_to_class_file.txt' # 필요 시 클래스 정의 파일 경로
+app = FastAPI()
 
-# 모델 로드
-model = torch.load(model_path)
+class InferenceRequest(BaseModel):
+    image: UploadFile
+
+# 모델 로드 및 설정
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+image_size = 384
+transform = get_transform(image_size=image_size)
+model = ram(pretrained='../models/ram_swin_large_14m.pth', image_size=image_size, vit='swin_l')
 model.eval()
+model = model.to(device)
 
-# 이미지 전처리
-preprocess = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
+@app.post("/inference/")
+async def run_inference(file: UploadFile = File(...)):
+    try:
+        # 이미지 파일 읽기
+        contents = await file.read()
+        image = Image.open(io.BytesIO(contents))
+        image = transform(image).unsqueeze(0).to(device)
 
-# 추론을 위한 이미지 로드
-def load_image(image_path):
-    if image_path.startswith('http'):
-        response = requests.get(image_path)
-        img = Image.open(BytesIO(response.content))
-    else:
-        img = Image.open(image_path)
-    return img
+        # 모델 추론
+        res = inference(image, model)
+        tags = res[0].split(" | ")
 
-# 추론 함수
-def predict(image_path):
-    img = load_image(image_path)
-    img_tensor = preprocess(img).unsqueeze(0)
-    
-    with torch.no_grad():
-        output = model(img_tensor)
-    
-    # 결과 해석 (여기서는 단순히 최대값의 인덱스를 사용)
-    _, predicted_idx = torch.max(output, 1)
-    
-    # 클래스 이름 로드 (필요 시)
-    # with open(class_file_path, 'r') as f:
-    #     classes = [line.strip() for line in f.readlines()]
-    # predicted_class = classes[predicted_idx.item()]
-    
-    return predicted_idx.item() # or predicted_class if classes are loaded
+        return JSONResponse(content={"tags": tags})
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=500)
 
-# 테스트
-image_path = 'path_to_your_image.jpg' # 또는 URL
-result = predict(image_path)
-print(f'Predicted class: {result}')
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

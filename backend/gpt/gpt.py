@@ -5,6 +5,7 @@ from cryptography.fernet import Fernet
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from credentials.credentials import Encrypted_text2
 import json
+import pprint
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 print("from gpt.py" + base_dir)
@@ -51,5 +52,5 @@ def gptPrompt(weather):
 
 weather = "sunny"
 result = gptPrompt(weather)
-# print(result)
+pprint.pprint(result)
 # print(f"type of result is: {result}")
