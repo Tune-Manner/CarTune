@@ -1,9 +1,9 @@
-import EmailInput from "custom-components/form/EmailInput";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { callSendPlaylistAPI } from "apis/emailAPICalls";
+import EmailInput from "custom-components/form/EmailInput";
 
 function SendEmail() {
   const containerStyle = {
@@ -19,8 +19,9 @@ function SendEmail() {
   const dispatch = useDispatch();
   const [form, setForm] = useState({
     email: "",
-    playlist_created_date: "2024-01-01",
-    weather_id: "3"
+    playlist_created_date: "",
+    weather_id: "3",
+    playlist_url: ""  // URL에서 전달받은 파라미터 값 저장
   });
 
   const { sendPlaylistSuccess, errorMessage } = useSelector(state => state.emailReducer);
@@ -31,6 +32,23 @@ function SendEmail() {
     }
   }, [sendPlaylistSuccess, navigate]);
 
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0]; // 현재 날짜를 YYYY-MM-DD 형식으로 포맷팅
+    setForm(form => ({
+      ...form,
+      playlist_created_date: formattedDate
+    }));
+
+    // location.state에서 전달된 playlist_url 파라미터 값을 form에 설정
+    if (location.state && location.state.playlist_url) {
+      setForm(form => ({
+        ...form,
+        playlist_url: location.state.playlist_url
+      }));
+    }
+  }, [location.state]);
+
   const onChangeHandler = (e) => {
     setForm({
       ...form,
@@ -39,7 +57,8 @@ function SendEmail() {
   };
 
   const onClickSendEmailHandler = (email) => {
-    dispatch(callSendPlaylistAPI({ emailData: { ...form, email } })); // 이메일 값 추가해서 전송
+    // 이메일 전송 시 form 데이터 전달
+    dispatch(callSendPlaylistAPI({ emailData: { ...form, email } }));
   };
 
   const onClickHandler = () => {
