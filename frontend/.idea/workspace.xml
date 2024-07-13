@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="57ac18e1-3b7e-49a5-b644-e08b1929ef21" name="Changes" comment="feature: design voice input tag">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/models/ram_swin_large_14m.pth" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/models/ram_swin_large_14m.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myenv/Lib/site-packages/distutils-precedence.pth" beforeDir="false" afterPath="$PROJECT_DIR$/../myenv/Lib/site-packages/distutils-precedence.pth" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="email-28-get-playlist" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2j5CYIvtsW7EfANgvlr9S9LY41A" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/00_CarTune/code/main/CarTune/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\00_CarTune\code\Front\CarTune\frontend\src\custom-components\card" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="57ac18e1-3b7e-49a5-b644-e08b1929ef21" name="Changes" comment="" />
+      <created>1720667596935</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1720667596935</updated>
+      <workItem from="1720667605400" duration="23627000" />
+      <workItem from="1720749468970" duration="158000" />
+      <workItem from="1720749655651" duration="119000" />
+      <workItem from="1720749821071" duration="7000" />
+      <workItem from="1720749938954" duration="22366000" />
+      <workItem from="1720852188277" duration="8230000" />
+      <workItem from="1720864340664" duration="331000" />
+      <workItem from="1720864738413" duration="1280000" />
+      <workItem from="1720866181415" duration="231000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat : file upload and image view">
+      <created>1720679573473</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1720679573473</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat : success api connect">
+      <created>1720683434674</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1720683434674</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: success weather component">
+      <created>1720684395302</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1720684395302</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: recognize weather">
+      <created>1720686080830</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1720686080830</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: move next page">
+      <created>1720689783444</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1720689783445</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: voice recognize UI">
+      <created>1720746352181</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1720746352181</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: voice recognize UI">
+      <created>1720747256762</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1720747256762</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: merge before commit">
+      <created>1720747582286</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1720747582286</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: voice input ui">
+      <created>1720748690892</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1720748690892</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: voice input ui">
+      <created>1720749052979</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1720749052980</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: design input tag and icon">
+      <created>1720752719563</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1720752719563</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: design layout weatherCard">
+      <created>1720755851788</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1720755851788</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: design layout input tag">
+      <created>1720756784874</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1720756784874</updated>
+    </task>
+    <task id="LOCAL-00014" summary="refactor: move weather data">
+      <created>1720766136270</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1720766136270</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feature: design voice input tag">
+      <created>1720767593301</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1720767593301</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feature: design voice input tag">
+      <created>1720768670238</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1720768670238</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/front-template-18-design-voice" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="feat : file upload and image view" />
+    <MESSAGE value="feat : success api connect" />
+    <MESSAGE value="feat: success weather component" />
+    <MESSAGE value="feat: recognize weather" />
+    <MESSAGE value="feat: move next page" />
+    <MESSAGE value="feat: voice recognize UI" />
+    <MESSAGE value="feat: merge before commit" />
+    <MESSAGE value="feat: voice input ui" />
+    <MESSAGE value="feat: design input tag and icon" />
+    <MESSAGE value="feat: design layout weatherCard" />
+    <MESSAGE value="feat: design layout input tag" />
+    <MESSAGE value="refactor: move weather data" />
+    <MESSAGE value="feature: design voice input tag" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: design voice input tag" />
+  </component>
+</project>
