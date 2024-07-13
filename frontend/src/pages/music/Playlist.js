@@ -4,6 +4,7 @@ import { FiShare } from "react-icons/fi";
 import axios from 'axios';
 import { BsFillPlayFill } from "react-icons/bs";
 import './Playlist.css';  // CSS 파일 추가
+
 import { useNavigate, useLocation } from "react-router-dom";
 
 function Playlist() {
@@ -26,6 +27,7 @@ function Playlist() {
     useEffect(() => {
         fetchLatestPlaylist();
     }, []);
+
 
     const fetchLatestPlaylist = async () => {
         try {
@@ -166,7 +168,6 @@ function Playlist() {
                                     <div className="track-duration">{Math.floor(item.track.duration_ms / 60000)}:{Math.floor((item.track.duration_ms % 60000) / 1000).toFixed(0).padStart(2, '0')}</div>
                                 </div>
                             ))}
-
                         </div>
                     )}
                 </Col>
