@@ -213,3 +213,4 @@ sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,react
 backend/models/ram_swin_large_14m.pth
+backend/vision/sample_images/
