@@ -6,7 +6,6 @@ from typing import List
 from cryptography.fernet import Fernet
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from gpt.gpt import gptPrompt, weather
 
 from credentials.credentials import Encrypted_text, Encrypted_text1
 
@@ -141,7 +140,7 @@ def play_playlist(headers, playlist_id):
         raise HTTPException(status_code=play_response.status_code, detail=play_response.json().get('error', {}).get('message', 'Error playing playlist'))
 
 @app.post("/create_and_play_playlist")
-def create_and_play_playlist():
+def create_and_play_playlist(playlist_data):
     try:
         # 1. 액세스 토큰 갱신
         access_token = refresh_access_token(REFRESH_TOKEN)
@@ -152,10 +151,10 @@ def create_and_play_playlist():
         
 
         # 3. 플레이리스트 생성
-        playlist_id = create_playlist(headers, user_id, gptPrompt(weather)['playlist_name'])
+        playlist_id = create_playlist(headers, user_id, playlist_data['playlist_name'])
 
         # 4. 트랙 검색 및 URI 수집
-        track_uris = search_tracks(headers, gptPrompt(weather)['songs'])
+        track_uris = search_tracks(headers, playlist_data['songs'])
 
         # 5. 트랙을 플레이리스트에 추가
         add_tracks_to_playlist(headers, playlist_id, track_uris)
@@ -166,12 +165,12 @@ def create_and_play_playlist():
         # 최신 플레이리스트 정보 저장
         global latest_playlist_info
         latest_playlist_info = {
-            "playlist_id": playlist_id,
+            "playlist_key": playlist_id,
             "track_uris": track_uris,
             "refresh_token": REFRESH_TOKEN
         }
 
-        return {"playlist_id": playlist_id, "track_uris": track_uris, "refresh_token": REFRESH_TOKEN}
+        return {"playlist_key": playlist_id, "track_uris": track_uris, "refresh_token": REFRESH_TOKEN}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -184,5 +183,8 @@ def get_latest_playlist():
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8000)
+
+
+
 
 
