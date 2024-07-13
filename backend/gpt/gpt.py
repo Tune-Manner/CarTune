@@ -7,6 +7,8 @@ from credentials.credentials import Encrypted_text2
 import json
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
+print("from gpt.py" + base_dir)
+# with open(os.path.join(base_dir, "../credentials/encryption_key2.key"), "rb") as key_file:
 with open(os.path.join(base_dir, "../credentials/encryption_key2.key"), "rb") as key_file:
     key = key_file.read()
 
