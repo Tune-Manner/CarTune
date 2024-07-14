@@ -13,9 +13,9 @@
 
 <br>
 
-## 👋 커뮤니티 관리자를 소개합니다
+## 👋 CARTUNE 팀원을 소개합니다
 
-| <img src = "https://raw.githubusercontent.com/beyond-sw-camp/be04-4th-OmokNoonE-OnionHotSayYo/main/README_IMAGE/contributors/%EC%A7%80%ED%98%84%EA%B7%BC.png?raw=true" height=150/>|  <img src = "https://raw.githubusercontent.com/beyond-sw-camp/be04-4th-OmokNoonE-OnionHotSayYo/main/README_IMAGE/contributors/%EC%A7%80%ED%98%84%EA%B7%BC.png?raw=true" height=150/>| <img src = "https://raw.githubusercontent.com/beyond-sw-camp/be04-4th-OmokNoonE-OnionHotSayYo/main/README_IMAGE/contributors/%EC%A7%80%ED%98%84%EA%B7%BC.png?raw=true" height=150/> |<img src = "https://raw.githubusercontent.com/beyond-sw-camp/be04-4th-OmokNoonE-OnionHotSayYo/main/README_IMAGE/contributors/%EC%A7%80%ED%98%84%EA%B7%BC.png?raw=true" height=150/> | 
+| <img src = "https://github.com/Tune-Manner/CarTune/blob/dev/img/%EB%8F%99%ED%99%98.png?raw=true" height=150/>|  <img src = "https://github.com/Tune-Manner/CarTune/blob/dev/img/%EC%9A%B0%EC%A3%BC.png?raw=true" height=150/>| <img src = "https://raw.githubusercontent.com/beyond-sw-camp/be04-4th-OmokNoonE-OnionHotSayYo/main/README_IMAGE/contributors/%EC%A7%80%ED%98%84%EA%B7%BC.png?raw=true" height=150/> |<img src = "https://github.com/Tune-Manner/CarTune/blob/dev/img/%EC%8B%9C%EC%98%A8.png?raw=true" height=150/> | 
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | 
 |                            고동환                            |                            소우주                            |                            지현근                            |                            최시온                          | 
 | [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/eurdream98) | [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/helloItsUniverse) |  [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/jihyeongeun) | [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/sisology) |
