@@ -1,6 +1,8 @@
 # 🚙 CARTUNE_운전자를 안전하게, 드라이브를 흥겹게
 
-![리드미로고]()
+<p align="center">
+  <img src="https://github.com/Tune-Manner/CarTune/blob/dev/img/cartoon-logo.png" alt="CarTune 로고">
+</p>
 
 
 > 차량 주행 중 음악을 재생하려면 전방 주시에 소홀하게 되며 이는 사고 위험성 증대를 야기합니다. 또한 운전을 하면서 본인이 원하는 음악을 선곡을 하기에는 많은 어려움이 있습니다.
@@ -13,7 +15,7 @@
 
 ## 👋 커뮤니티 관리자를 소개합니다
 
-|  |  |  | | 
+| <img src = "https://raw.githubusercontent.com/beyond-sw-camp/be04-4th-OmokNoonE-OnionHotSayYo/main/README_IMAGE/contributors/%EC%A7%80%ED%98%84%EA%B7%BC.png?raw=true" height=150/>|  <img src = "https://raw.githubusercontent.com/beyond-sw-camp/be04-4th-OmokNoonE-OnionHotSayYo/main/README_IMAGE/contributors/%EC%A7%80%ED%98%84%EA%B7%BC.png?raw=true" height=150/>| <img src = "https://raw.githubusercontent.com/beyond-sw-camp/be04-4th-OmokNoonE-OnionHotSayYo/main/README_IMAGE/contributors/%EC%A7%80%ED%98%84%EA%B7%BC.png?raw=true" height=150/> |<img src = "https://raw.githubusercontent.com/beyond-sw-camp/be04-4th-OmokNoonE-OnionHotSayYo/main/README_IMAGE/contributors/%EC%A7%80%ED%98%84%EA%B7%BC.png?raw=true" height=150/> | 
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | 
 |                            고동환                            |                            소우주                            |                            지현근                            |                            최시온                          | 
 | [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/eurdream98) | [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/helloItsUniverse) |  [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/jihyeongeun) | [<img src="https://img.shields.io/badge/Github-Link-181717?logo=Github">](https://github.com/sisology) |
@@ -55,14 +57,14 @@
 ## 📃 문서
 <details>
   <summary>요구사항 정의서</summary>
-<img width="991" alt="image" src="">
+<img width="991" alt="image" src="https://github.com/Tune-Manner/CarTune/blob/dev/img/%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%20%EC%A0%95%EC%9D%98%EC%84%9C.png">
 </details>
 
 
 <details>
   <summary>시스템 아키텍처</summary>
  
-![image]()
+<img width="991" alt="image" src="https://github.com/Tune-Manner/CarTune/blob/dev/img/CarTune%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98.png">
 </details>
 
 
@@ -70,13 +72,19 @@
 <details>
   <summary>WBS</summary>
  
-![WBS]()
+![WBS](https://github.com/Tune-Manner/CarTune/blob/dev/img/wbs.png)
+</details>
+
+<details>
+  <summary>유스케이스</summary>
+ 
+![유스케이스](https://github.com/Tune-Manner/CarTune/blob/dev/img/%EC%9C%A0%EC%8A%A4%EC%BC%80%EC%9D%B4%EC%8A%A4.png)
 </details>
 
 <details>
   <summary>화면 설계서</summary>
  
-<img width="1050" alt="image" src="">
+<img width="1050" alt="image" src="https://github.com/Tune-Manner/CarTune/blob/dev/img/%ED%99%94%EB%A9%B4%20%EC%84%A4%EA%B3%84.png">
 </details>
 
 <br>
