@@ -15,14 +15,3 @@ export const callWeatherPredictAPI = (file) => {
         }
     };
 };
-
-// export function callWeatherPredictResultAPI() {
-//
-//     return async (dispatch, getState) => {
-//
-//         // API 호출
-//         const result = await request('GET', '/weather-predict')
-//
-//         dispatch(weatherPredictResult(result));
-//     }
-// }

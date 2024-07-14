@@ -7,7 +7,7 @@ const initialState = {};
 const SUCCESS = 'weather/SUCCESS';
 const GET_WEATHER_RESULT = 'weather/GET_WEATHER_RESULT';
 
-export const { weather : { success,getWeatherResult } } = createActions({
+export const { weather : { success, getWeatherResult } } = createActions({
     [SUCCESS] : () => ({ success : true }),
     [GET_WEATHER_RESULT] : result => ({ weather : result })
 });

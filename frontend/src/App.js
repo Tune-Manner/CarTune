@@ -43,7 +43,7 @@ function AnimatedRoutes() {
         {/* 플레이리스트 조회 및 제어 */}
         <Route path="/playlist" element={<PlayListLayout />}>
           <Route index element={<PageTransition><Playlist /></PageTransition>} />
-          <Route path="send-email" element={<PageTransition><SendEmail /></PageTransition>} />
+          <Route path="send-email/:playlistId" element={<PageTransition><SendEmail /></PageTransition>} />
         </Route>
       </Routes>
     </AnimatePresence>

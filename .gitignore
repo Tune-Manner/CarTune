@@ -6,7 +6,7 @@
 backend/__pycache__/
 backend/credentials/
 backend/keys.py
-backend/models/
+backend/models/ram_swin_large_14m.pth
 backend/vision/sample_images/
 *.py[cod]
 *$py.class
