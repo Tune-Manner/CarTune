@@ -7,7 +7,7 @@ import WeatherCard_v2 from 'custom-components/card/WeatherCard_v2';
 
 function WeatherOptions() {
     const location = useLocation();
-    const { weatherName } = location.state || {};
+    const { predictedClass } = location.state || {};
     const [recording, setRecording] = useState(false);
     const [transcript, setTranscript] = useState('');
     const [error, setError] = useState('');
@@ -16,8 +16,9 @@ function WeatherOptions() {
 
     useEffect(() => {
         if (transcript) {
+            console.log("값유지2",predictedClass)
             const timer = setTimeout(() => {
-                navigate('/playlist', { state: { entities,weatherName } });
+                navigate('/playlist', { state: { entities,predictedClass } });
             }, 3000);
 
             return () => clearTimeout(timer);
@@ -119,9 +120,6 @@ function WeatherOptions() {
                         onBlur={handleInputBlur}
                     />
                 </div>
-            </div>
-            <div className="weather-card-container">
-                <WeatherCard_v2 weatherName={weatherName} />
             </div>
         </div>
     );

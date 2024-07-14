@@ -7,7 +7,7 @@ export const callWeatherPredictAPI = (file) => {
         formData.append('file', file);
 
         // API 호출
-        const result = await request('POST', '/weather-predict/', formData);
+        const result = await request('POST', '/inference/', formData);
         if (result && result.status === 200) {
             dispatch(getWeatherResult(result.data));
         } else {
