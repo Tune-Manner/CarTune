@@ -58,6 +58,7 @@
 <details>
   <summary>요구사항 정의서</summary>
 <img width="991" alt="image" src="https://github.com/Tune-Manner/CarTune/blob/dev/img/%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD%20%EC%A0%95%EC%9D%98%EC%84%9C.png">
+  https://docs.google.com/spreadsheets/d/1ZMqBu60fOUanpbbfe5xYt766vnxtXcyCJNplzruAmJQ/edit?gid=0#gid=0
 </details>
 
 
@@ -73,6 +74,7 @@
   <summary>WBS</summary>
  
 ![WBS](https://github.com/Tune-Manner/CarTune/blob/dev/img/wbs.png)
+https://docs.google.com/spreadsheets/d/1ZMqBu60fOUanpbbfe5xYt766vnxtXcyCJNplzruAmJQ/edit?gid=0#gid=0
 </details>
 
 <details>
