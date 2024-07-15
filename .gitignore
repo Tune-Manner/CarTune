@@ -4,6 +4,10 @@
 ### Python ###
 # Byte-compiled / optimized / DLL files
 backend/__pycache__/
+backend/credentials/
+backend/keys.py
+backend/models/ram_swin_large_14m.pth
+backend/vision/sample_images/
 *.py[cod]
 *$py.class
 
@@ -11,24 +15,25 @@ backend/__pycache__/
 *.so
 
 # Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+backend/.idea
+backend/.Python
+backend/build/
+backend/develop-eggs/
+backend/dist/
+backend/downloads/
+backend/eggs/
+backend/.eggs/
+backend/lib/
+backend/lib64/
+backend/parts/
+backend/sdist/
+backend/var/
+backend/wheels/
+backend/share/python-wheels/
+backend/*.egg-info/
+backend/.installed.cfg
+backend/*.egg
+backend/MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -161,7 +166,8 @@ cython_debug/
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
+.idea/
+frontend/.idea
 
 ### Python Patch ###
 # Poetry local configuration file - https://python-poetry.org/docs/configuration/#local-configuration
@@ -208,3 +214,4 @@ sketch
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,react
+
