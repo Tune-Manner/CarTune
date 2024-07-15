@@ -12,6 +12,7 @@ function Playlist() {
     const [playlist_key, setPlaylistId] = useState(null);  // 플레이리스트 ID 상태 변수 추가
     const navigate = useNavigate();
     const location = useLocation();
+    const { entities,predictedClass } = location.state || {};
 
     // 로고 클릭 시 메인 페이지로 이동
     const onClickHandler = () => navigate("/");
@@ -123,6 +124,7 @@ function Playlist() {
     };
 
     return (
+        predictedClass &&
         <Container style={containerStyle}>
             <Row>
                 <Col className="text-left">

@@ -3,6 +3,7 @@ import speech_recognition as sr
 
 app = FastAPI()
 
+
 @app.post("/transcribe/")
 async def transcribe_audio():
     recognizer = sr.Recognizer()

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
-import WeatherCard from 'custom-components/card/WeatherCard';
+import WeatherCard_v3 from 'custom-components/card/WeatherCard_v3';
 
 const weatherMapping = {
     1: "Rainy",
@@ -21,8 +21,9 @@ function WeatherSearchResult() {
 
     useEffect(() => {
         if (countdown > 0) {
-            const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
-            return () => clearTimeout(timer);
+            console.log("값 유지",predictedClass)
+            // const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+            // return () => clearTimeout(timer);
         } else {
             handleNextStep();
         }
@@ -31,10 +32,11 @@ function WeatherSearchResult() {
     const handleNextStep = () => {
         // 다음 단계로 이동하는 로직을 여기에 추가
         console.log('다음 단계로 이동');
-        navigate('/search/weather/options',{state : {weatherName}}); // 다음 화면으로 이동하는 경로를 여기에 설정
+        navigate('/search/weather/options',{state : {predictedClass}}); // 다음 화면으로 이동하는 경로를 여기에 설정
     };
 
     return (
+        predictedClass &&
         <>
             <Row className="px-5">
                 <Col className="col-8 mt-5">
@@ -43,7 +45,7 @@ function WeatherSearchResult() {
                     </div>
                 </Col>
                 <Col className="col-4 mt-5">
-                    <WeatherCard weatherName={weatherName} countdown={countdown} handleNextStep={handleNextStep} />
+                    <WeatherCard_v3 weatherName={predictedClass} countdown={countdown} handleNextStep={handleNextStep} />
                 </Col>
             </Row>
         </>
