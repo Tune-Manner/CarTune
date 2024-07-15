@@ -1,4 +1,5 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi.responses import JSONResponse
 import speech_recognition as sr
 from transformers import BartForConditionalGeneration, PreTrainedTokenizerFast
 from tensorflow.python.keras.models import load_model
@@ -14,6 +15,10 @@ import pprint
 from credentials.credentials import Encrypted_text2
 import openai
 import json
+import torch
+from ram.models import ram
+from ram import inference_ram as inference
+from ram import get_transform
 
 # Import functions from music.py
 import sys
@@ -187,6 +192,33 @@ async def predict(file: UploadFile = File(...)):
         "predicted_class": predicted_class
     }
 
+# 모델 로드 및 설정
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+image_size = 384
+transform = get_transform(image_size=image_size)
+model = ram(pretrained=base_dir + '/models/ram_swin_large_14m.pth', image_size=image_size, vit='swin_l')
+model.eval()
+model = model.to(device)
+
+@app.post("/inference/")
+async def run_inference(file: UploadFile = File(...)):
+    try:
+        # 이미지 파일 읽기
+        contents = await file.read()
+        image = Image.open(io.BytesIO(contents))
+        image = transform(image).unsqueeze(0).to(device)
+
+        # 모델 추론
+        res = inference(image, model)
+        pprint.pprint(res)
+        tags = res[0].split(" | ")
+        global global_predicted_class
+        global_predicted_class = ", ".join(tags)
+
+        return JSONResponse(content={"tags": tags})
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=500)
+    
 @app.get("/get_predicted_class/")
 async def get_predicted_class():
     global global_predicted_class
@@ -195,9 +227,35 @@ async def get_predicted_class():
     else:
         raise HTTPException(status_code=404, detail="No prediction available")
 
-def gptPrompt(weather, keyword):
+def gptPromptPreprocessing(weather):
     try:
-        prompt = "{} 날씨와 {} 분위기에 맞는 음악 20개를 추천해줘. 반드시 영어로 아래 양식에 맞게 작성해줘.\n\
+        prompt = "{} 이 키워드들 중에서 날씨와 관련된 키워드 한개를 선택해줘. 반드시 영어로 아래 양식에 맞게 작성해줘.\n\
+            {{\
+            \t\"keyword\": \"{{}}\"\
+            }}".format(weather)
+        response = openai.chat.completions.create(
+            model='gpt-3.5-turbo',
+            messages=[
+                {
+                    'role': 'user', 
+                    'content': prompt
+                },
+            ],
+            temperature=0.4
+        )
+        print('\nChatGPT is now generating answer 1 ...')
+        print(response.choices[0].message.content)
+
+    except Exception as e:
+        print("OpenAI API Error!")
+        print(f"에러 내용: \n{e}")
+        return
+    return response.choices[0].message.content
+        
+
+def gptPrompt(weather, atmosphere, keyword):
+    try:
+        prompt = "{} 분위기와 {} 취향에 맞는 음악 20개를 추천해줘. 반드시 영어로 아래 양식에 맞게 작성해줘.\n\
         {{\
         \t\"songs\": [\
         \t\t{{ \"title\": \"Spring Day\", \"artist\": \"BTS\" }},\
@@ -208,7 +266,7 @@ def gptPrompt(weather, keyword):
         \t\t{{ \"title\": \"LILAC\", \"artist\": \"IU\" }}\
         \t],\
         \t\"playlist_name\": \"{}_day_{}_playlist\"\
-        }}".format(weather, keyword, weather, keyword)
+        }}".format(atmosphere, keyword, weather, keyword)
 
         response = openai.chat.completions.create(
             model='gpt-3.5-turbo',
@@ -220,7 +278,7 @@ def gptPrompt(weather, keyword):
             ],
             temperature=0.4
         )
-        print('\nChatGPT is now generating answer ...')
+        print('\nChatGPT is now generating answer 2 ...')
 
     except Exception as e:
         print("OpenAI API Error!")
@@ -237,11 +295,14 @@ async def create_playlist_endpoint():
         predicted_class = response_weather['predicted_class']
         entities = response_entities['entities']
 
-        class_dict = {0: "", 1: "Rainy", 2: "Cloudy", 3: "Sunny", 4: "Snowy", 5: "Foggy"}
-        weather = class_dict.get(predicted_class, "Unknown")
+        # class_dict = {0: "", 1: "Rainy", 2: "Cloudy", 3: "Sunny", 4: "Snowy", 5: "Foggy"}
+        # weather = class_dict.get(predicted_class, "Unknown")
+        atmosphere = predicted_class
+        print(f"predicted_class: {predicted_class}")
         keyword = " ".join(entities)
 
-        playlist_data = gptPrompt(weather, keyword)
+        weather = gptPromptPreprocessing(atmosphere)
+        playlist_data = gptPrompt(weather, atmosphere, keyword)
 
         result = create_and_play_playlist(playlist_data)
         return result
